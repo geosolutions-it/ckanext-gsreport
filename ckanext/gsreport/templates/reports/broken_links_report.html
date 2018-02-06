@@ -1,20 +1,45 @@
 <ul>
-    <li>{% trans %}Number of formats used{% endtrans %}: {{ data.number_of_formats }}</li>
+    <li>{% trans %}Number of resources checked{% endtrans %}: {{ data.number_of_resources }}</li>
+    <li>{% trans %}Number of resources failed{% endtrans %}: {{ data.number_of_errors }}</li>
 </ul>
 
 <table class="table table-bordered table-condensed tablesorter">
     <thead>
         <tr>
-            <th>{% trans %}Format{% endtrans %}</th>
-            <th>{% trans %}Count{% endtrans %}</th>
+            <th colspan="4">{% trans %}Resource{% endtrans %}</th>
+        </tr>
+        <tr>
+            <th colspan="4">{% trans %}Dataset{% endtrans %}</th>
+        </tr>
+        <tr>
+            <th colspan="2">{% trans %}Checked at{% endtrans %}</th>
+            <th>{% trans %}Type of error{% endtrans %}</th>
+            <th>{% trans %}Response code{% endtrans %}</th>
+        </tr>
+        <tr>
+            <th colspan="4">{% trans %}Response data{% endtrans %}</th>
         </tr>
     </thead>
     <tbody>
         {% for row in table %}
             <tr>
-                <td>{{ row.format }}</td>
-                <td>{{ row.count }}</td>
+                <td colspan="4"><strong>{% trans %}Resource{% endtrans %}:</strong> <a href="{{ row.url }}">{{ row.resource_name }}</a></td>
             </tr>
+            <tr>
+                <td colspan="4"><strong>{% trans %}Dataset{% endtrans %}:</strong> <a href="{{ row.dataset_url }}">{{ row.dataset_title }}</a></td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ row.checked_at }}</td>
+                <td>{{ row.error}}</td>
+                <td>{{ row.code }}</td>
+            </tr>
+            <tr>
+                <td colspan="4">{{ row.data or row.msg }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"> </td>
+            </tr>
+                
         {% endfor %}
     </tbody>
 </table>

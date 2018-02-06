@@ -2,20 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from datetime import datetime
 from sqlalchemy import func, and_, or_
-from ckan.lib.base import config
 from ckan import model
 import ckan.plugins.toolkit as t
 from ckanext.report import lib
 from ckan.common import OrderedDict
 from sqlalchemy import desc
-from urllib import urlopen
 
-
+from ckanext.gsreport.checkers import check_url
 log = logging.getLogger(__name__)
-
-SITE_BASE = config['ckan.site_url']
 
 def report_licenses():
     s = model.Session
@@ -30,75 +25,28 @@ def report_licenses():
     return {'table': table,
             'number_of_licenses': count}
 
-
-def check_item(res):
-    """
-    Performs a check on Resource if url provided is working correctly
-    """
-    log.debug('checking [%s] resource: %s from %s [%s dataset]', res.format, res.url, res.name, res.package.title)
-    res_url = res.url
-
-    if not res_url.startswith(('http://', 'https://')):
-        res_url = '{}/{}'.format(SITE_URL, res_url.lstrip('/'))
-        log.debug('rewriting url from %s to %s', res.url, res_url)
-
-    out = {'code': None,
-           'url': res_url,
-           'resource_url': res.url,
-           'resource_name': res.name,
-           'resource_format': res.format,
-           'dataset_title': res.package.title,
-           'dataset_id': res.package_id,
-           'time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-           'headers': {},
-           'data': None,
-           'msg': None,
-           'error': None}
-
-    try:
-        resp = urlopen(res_url)
-    except IOError, err:
-        log.warning('Cannot connect to %s: %s', res_url, err)
-        out['msg'] = str(err)
-        out['error'] = 'connection-error'
-        return out
-    resp_code = resp.getcode()
-    info = resp.info()
-    data = resp.read(1024)
-    out.update({'code': resp_code,
-                'headers': info.headers,
-                'data': data})
-    if resp_code != 200:
-        out['error'] = 'bad-response-code'
-        log.warning('bad response from resource: %s: %s', resp_code, data)
-        return out
-    if res.format.lower() in ('wms', 'wfs', 'map_srvc'):
-        if '<serviceexception' in data.lower():
-            out['error'] = 'bad-response-data'
-            log.warning('bad response from spatial resource: %s: %s', resp_code, data)
-            return out
-
 def report_broken_links():
     s = model.Session
     R = model.Resource
     D = model.Package
 
-    q = s.query(R, D)\
+    q = s.query(R)\
          .join(D, D.id == R.package_id)\
          .filter(and_(R.state == 'active',
                       D.state == 'active'))\
-         .order_by(D.title, R.name)
+         .order_by(R.url)
 
     table = []
-    log.info("Checking broken links for %s items", q.count())
-    for item in q:
-        res, dataset = item
-        out = check_item(res)
+    count = q.count()
+    log.info("Checking broken links for %s items", count)
+    for res in q[500:1000]:
+        out = check_url(res)
         if out:
             table.append(out)
 
     return {'table': table,
-            'number_of_formats': count}
+            'number_of_resources': count,
+            'number_of_errors': len(table)}
 
 def resources_formats():
     s = model.Session
@@ -120,7 +68,7 @@ def all_reports():
         'option_defaults': {},
         'generate': report_broken_links,
         'option_combinations': None,
-        'template': None,
+        'template': 'reports/broken_links_report.html',
     }
 
     resources_format_info = {
