@@ -12,7 +12,7 @@
     <tbody>
         {% for row in table %}
             <tr>
-                <td>{{ row.license }}</td>
+                <td><a href="{{ site_url }}/dataset?license_id={{row.license }}">{{ row.license or '(no license)' }}</a></td>
                 <td>{{ row.count }}</td>
             </tr>
         {% endfor %}
