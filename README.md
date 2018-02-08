@@ -7,9 +7,9 @@ CKAN report infrastructure
 This CKAN extension provides reports about resources properties. Extension uses `ckanext-report` and adds reports to dashboard at `/report`.
 
 Reports available:
-     * `resources-format` - list of formats used in active resources
-     * `licenses` - list of licenses used in active datasets
-     * `broken-links` - list of links that do not work correctly (this may consume significant amount of time to generate, because each link is validated with live request).
+ * `resources-format` - list of formats used in active resources
+ * `licenses` - list of licenses used in active datasets
+ * `broken-links` - list of links that do not work correctly (this may consume significant amount of time to generate, because each link is validated with live request).
 
 ## Installation
 
