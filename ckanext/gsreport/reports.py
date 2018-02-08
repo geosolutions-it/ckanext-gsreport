@@ -55,10 +55,14 @@ def resources_formats():
          .group_by(R.format)\
          .order_by(desc(func.count(R.format)))
 
+    q_count = s.query(func.count(R.format))
+
     count = q.count()
+    res_count = q_count.one()[0]
     table = [{'format': r[0], 'count': r[1]} for r in q]
 
     return {'table': table,
+            'number_of_resources': res_count,
             'number_of_formats': count}
 
 def all_reports():
@@ -68,7 +72,7 @@ def all_reports():
         'option_defaults': {},
         'generate': report_broken_links,
         'option_combinations': None,
-        'template': 'reports/broken_links_report.html',
+        'template': 'report/broken_links_report.html',
     }
 
     resources_format_info = {
@@ -77,7 +81,7 @@ def all_reports():
         'option_defaults': {},
         'generate': resources_formats,
         'option_combinations': None,
-        'template': 'reports/resources_format_report.html',
+        'template': 'report/resources_format_report.html',
     }
 
     licenses_info = {
@@ -86,7 +90,7 @@ def all_reports():
         'option_defaults': {},
         'generate': report_licenses,
         'option_combinations': None,
-        'template': 'reports/licenses_report.html',
+        'template': 'report/licenses_report.html',
     }
 
     return [

@@ -1,0 +1,64 @@
+/* PAGE reports */
+/* - based on .dataset-summary.mini */
+.report-summary {
+  border-left: none;
+  border-radius: 3px;
+  background: #eee;
+  position: relative;
+  padding: 0 0 0 0;
+  min-height: 150px;
+  margin-bottom: 30px;
+}
+@media (min-width: 1200px) {
+  .report-summary {
+    min-height: 250px;
+  }
+}
+@media (max-width: 767px) {
+  .report-summary {
+    min-height: 0px;
+  }
+}
+.report-summary .report-title {
+  border-radius: 3px;
+  border-top-width: 39px;
+  border-right-width: 0px;
+  padding: 10px 14px;
+  font-size: 17px;
+  line-height: 22px;
+  color: #393939;
+}
+.report-summary .report-body {
+  border-right: none;
+  padding: 0 14px 10px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #999;
+}
+.report-summary .report-body .dataset-publisher {
+  display: none;
+}
+.report-summary .report-description {
+  margin-bottom: 25px;
+}
+.report-summary .view-report-link {
+  display: block;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  border-top: 1px solid #e0e0e0;
+  text-align: right;
+  color: #999;
+  padding: 10px 22px 11px 0;
+}
+.report-summary .view-report-link:hover {
+  color: #666;
+  text-decoration: none;
+}
+
+
+.primary {
+    float: left!important;
+    width: 100%;
+}

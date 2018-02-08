@@ -26,4 +26,3 @@ class StatusReportPlugin(plugins.SingletonPlugin):
 
     def register_reports(self):
         return all_reports()
-
