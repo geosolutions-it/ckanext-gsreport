@@ -6,6 +6,11 @@ CKAN report infrastructure
 
 This CKAN extension provides reports about resources properties. Extension uses `ckanext-report` and adds reports to dashboard at `/report`.
 
+Reports available:
+     * `resources-format` - list of formats used in active resources
+     * `licenses` - list of licenses used in active datasets
+     * `broken-links` - list of links that do not work correctly (this may consume significant amount of time to generate, because each link is validated with live request).
+
 ## Installation
 
 This extension requires `ckanext-report` and `owslib` to be installed before using `ckanext-gsreport`.
@@ -22,7 +27,7 @@ This extension requires `ckanext-report` and `owslib` to be installed before usi
 
 3. Run reports generation. 
 
-> paster --plugin=ckanext-report report generate --config=<path to config.ini>
+> paster --plugin=ckanext-report report generate --config=path/to/config.ini
 
 **Warning** this can take a while to produce results. Especially `broken-links` report may take significant amount of time, because it will check each resource for availability. It is recommended to run reports generation outside web process, for example with cron.
 
