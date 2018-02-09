@@ -64,6 +64,13 @@ ows_clients = {'wms': (owslib.wms.WebMapService, (dict(version='1.1.1'),
                             
 
 def check_ows(res, res_url, format):
+    out = _check_ows(res, res_url, format)
+    if out:
+        out_http = check_http(res, res_url)
+        return out_http or out
+
+
+def _check_ows(res, res_url, format):
     if format in ('map_srvc'):
         format = 'wms'
     client_cls, defaults = ows_clients[format]
@@ -129,5 +136,3 @@ check_handlers = {'wms': partial(check_ows, format='wms'),
                   'wfs': partial(check_ows, format='wfs'),
                   'map_srvc': partial(check_ows, format='wms'),
                   }
-                  
-

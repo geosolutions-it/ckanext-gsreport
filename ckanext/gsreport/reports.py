@@ -39,7 +39,7 @@ def report_broken_links():
     table = []
     count = q.count()
     log.info("Checking broken links for %s items", count)
-    for res in q[500:1000]:
+    for res in q:
         out = check_url(res)
         if out:
             table.append(out)

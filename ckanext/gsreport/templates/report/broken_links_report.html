@@ -23,7 +23,7 @@
     <tbody>
         {% for row in table %}
             <tr>
-                <td colspan="4"><strong>{% trans %}Resource{% endtrans %}:</strong> <a href="{{ row.url }}">{{ row.resource_name }}</a></td>
+                <td colspan="4"><strong>{% trans %}Resource{% endtrans %}:</strong> <a href="{{ row.url }}">{{ row.resource_name or row.url}}</a></td>
             </tr>
             <tr>
                 <td colspan="4"><strong>{% trans %}Dataset{% endtrans %}:</strong> <a href="{{ row.dataset_url }}">{{ row.dataset_title }}</a></td>
