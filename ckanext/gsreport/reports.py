@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 def report_licenses():
     s = model.Session
     P = model.Package
-    q = s.query(coalesce(P.license_id, ''), func.count(P.license_id))\
+    q = s.query(coalesce(P.license_id, ''), func.count(1))\
          .group_by(coalesce(P.license_id, ''))\
          .order_by(desc(func.count(P.license_id)))
 
@@ -52,7 +52,7 @@ def report_broken_links():
 def resources_formats():
     s = model.Session
     R = model.Resource
-    q = s.query(coalesce(R.format, ''), func.count(R.format))\
+    q = s.query(coalesce(R.format, ''), func.count(1))\
          .group_by(coalesce(R.format, ''))\
          .order_by(desc(func.count(R.format)))
 
