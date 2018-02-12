@@ -13,7 +13,7 @@
     <tbody>
         {% for row in table %}
             <tr>
-                <td><a href="{{ h.url_for(controller='package', action='search') }}?res_format={{ row.format }}">{{ row.format }}</a></td>
+                <td><a href="{{ h.url_for(controller='package', action='search') }}?res_format={{ row.format }}">{{ row.format or _('not specified') }}</a></td>
                 <td>{{ row.count }}</td>
             </tr>
         {% endfor %}

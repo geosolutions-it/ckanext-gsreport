@@ -3,6 +3,7 @@
 
 import logging
 from sqlalchemy import func, and_, or_
+from sqlalchemy.sql.functions import coalesce
 from ckan import model
 import ckan.plugins.toolkit as t
 from ckanext.report import lib
@@ -15,8 +16,8 @@ log = logging.getLogger(__name__)
 def report_licenses():
     s = model.Session
     P = model.Package
-    q = s.query(P.license_id, func.count(P.license_id))\
-         .group_by(P.license_id)\
+    q = s.query(coalesce(P.license_id, ''), func.count(P.license_id))\
+         .group_by(coalesce(P.license_id, ''))\
          .order_by(desc(func.count(P.license_id)))
 
     count = q.count()
@@ -51,8 +52,8 @@ def report_broken_links():
 def resources_formats():
     s = model.Session
     R = model.Resource
-    q = s.query(R.format, func.count(R.format))\
-         .group_by(R.format)\
+    q = s.query(coalesce(R.format, ''), func.count(R.format))\
+         .group_by(coalesce(R.format, ''))\
          .order_by(desc(func.count(R.format)))
 
     q_count = s.query(func.count(R.format))

@@ -8,52 +8,112 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-05 17:49+0100\n"
+"POT-Creation-Date: 2018-02-12 14:21+0100\n"
 "PO-Revision-Date: 2018-02-12 13:25+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: de\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.4.0\n"
+"Generated-By: Babel 0.9.6\n"
 
-#: ckanext/gsreport/reports.py:59
+#: ckanext/gsreport/checkers.py:136
+msgid ""
+" ** Warning:** Resource's URL is invalid for OWS service, however it "
+"responds with correct HTTP response.\n"
+"\n"
+"**OWS error:**  {}\n"
+"\n"
+"**OWS data:**\n"
+"\n"
+" {}"
+msgstr ""
+
+#: ckanext/gsreport/reports.py:72
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:68
+#: ckanext/gsreport/reports.py:81
 msgid "List formats used in resources"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:77
+#: ckanext/gsreport/reports.py:90
 msgid "List of licenses used"
 msgstr ""
 
-#: ckanext/gsreport/templates/reports/broken_links_report.html:2
-#: ckanext/gsreport/templates/reports/resources_format_report.html:2
-msgid "Number of formats used"
+#: ckanext/gsreport/templates/report/broken_links_report.html:2
+msgid "Number of resources checked"
 msgstr ""
 
-#: ckanext/gsreport/templates/reports/broken_links_report.html:8
-#: ckanext/gsreport/templates/reports/resources_format_report.html:8
-msgid "Format"
+#: ckanext/gsreport/templates/report/broken_links_report.html:3
+msgid "Number of resources failed"
 msgstr ""
 
-#: ckanext/gsreport/templates/reports/broken_links_report.html:9
-#: ckanext/gsreport/templates/reports/licenses_report.html:9
-#: ckanext/gsreport/templates/reports/resources_format_report.html:9
-msgid "Count"
+#: ckanext/gsreport/templates/report/broken_links_report.html:9
+#: ckanext/gsreport/templates/report/broken_links_report.html:26
+msgid "Resource"
 msgstr ""
 
-#: ckanext/gsreport/templates/reports/licenses_report.html:2
+#: ckanext/gsreport/templates/report/broken_links_report.html:12
+#: ckanext/gsreport/templates/report/broken_links_report.html:29
+msgid "Dataset"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:15
+msgid "Checked at"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:16
+msgid "Type of error"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:17
+msgid "Response code"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:20
+msgid "Response data"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/index.html:3
+#: ckanext/gsreport/templates/report/index.html:6
+msgid "Reports"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/index.html:40
+msgid "View Report"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/licenses_report.html:2
 msgid "Number of licenses used"
 msgstr ""
 
-#: ckanext/gsreport/templates/reports/licenses_report.html:8
+#: ckanext/gsreport/templates/report/licenses_report.html:8
 msgid "License"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/licenses_report.html:9
+#: ckanext/gsreport/templates/report/resources_format_report.html:10
+msgid "Count"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/licenses_report.html:15
+#: ckanext/gsreport/templates/report/resources_format_report.html:16
+msgid "not specified"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/resources_format_report.html:2
+msgid "Number of formats used"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/resources_format_report.html:3
+msgid "Number of resources"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/resources_format_report.html:9
+msgid "Format"
 msgstr ""
 
