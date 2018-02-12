@@ -178,12 +178,25 @@ def _check_ows(res, res_url, format):
             out['error'] = 'connection-error'
             out['msg'] = clean_for_markdown(str(err))
             return out
-            
+        
+        # fallback for general error
+        except Exception, err:
+            log.warning("OWS service %s causes client creation error: %s", res_url, err)
+            out['error'] = 'response-error'
+            out['msg'] = clean_for_markdown(str(err))
+            return out
+
         try:
             contents = client.contents
         except ServiceException, err:
             log.debug("OWS service %s is not using %s params", res_url, params)
 
+            out['error'] = 'response-error'
+            out['msg'] = clean_for_markdown(str(err))
+            return out
+        # fallback for general error
+        except Exception, err:
+            log.warning("OWS service %s causes client contents error: %s", res_url, err)
             out['error'] = 'response-error'
             out['msg'] = clean_for_markdown(str(err))
             return out
