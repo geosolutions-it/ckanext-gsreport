@@ -13,13 +13,35 @@ from sqlalchemy import desc
 from ckanext.gsreport.checkers import check_url
 log = logging.getLogger(__name__)
 
-def report_licenses():
+
+
+
+DEFAULT_CTX = {'ignore_auth': True}
+DEFAULT_ORG_CTX = DEFAULT_CTX.copy()
+DEFAULT_ORG_CTX.update(dict((k, False) for k in ('include_tags',
+                                                 'include_users',
+                                                 'include_groups',
+                                                 'include_extras',
+                                                 'include_followers',)))
+
+org_options = OrderedDict({'organization': None})
+
+def get_organizations():
+    call = t.get_action('organization_list')
+    orgs = call(DEFAULT_ORG_CTX, {})
+    return [{'organization': org['name']} for org in orgs]
+    
+
+def report_licenses(organization=None):
     s = model.Session
     P = model.Package
+
     q = s.query(coalesce(P.license_id, ''), func.count(P.license_id))\
          .group_by(coalesce(P.license_id, ''))\
          .order_by(desc(func.count(P.license_id)))
 
+    if organization:
+        q = q.filter(P.owner_org==organization)
     count = q.count()
     table = [{'license': r[0], 'count': r[1]} for r in q]
 
@@ -79,18 +101,18 @@ def all_reports():
     resources_format_info = {
         'name': 'resources-format',
         'description': t._("List formats used in resources"),
-        'option_defaults': {},
+        'option_defaults': org_options.copy(),
         'generate': resources_formats,
-        'option_combinations': None,
+        'option_combinations': get_organizations,
         'template': 'report/resources_format_report.html',
     }
 
     licenses_info = {
         'name': 'licenses',
         'description': t._("List of licenses used"),
-        'option_defaults': {},
+        'option_defaults': org_options.copy(),
         'generate': report_licenses,
-        'option_combinations': None,
+        'option_combinations': get_organizations,
         'template': 'report/licenses_report.html',
     }
 
