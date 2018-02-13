@@ -49,16 +49,20 @@ def report_licenses(organization=None):
     return {'table': table,
             'number_of_licenses': count}
 
-def report_broken_links():
+def report_broken_links(organization=None):
     s = model.Session
     R = model.Resource
     D = model.Package
+    O = model.Group
 
     q = s.query(R)\
          .join(D, D.id == R.package_id)\
          .filter(and_(R.state == 'active',
                       D.state == 'active'))\
          .order_by(R.url)
+
+    if organization:
+        q = q.join(O, O.id == D.owner_org).filter(O.name==organization)
 
     table = []
     count = q.count()
@@ -72,12 +76,22 @@ def report_broken_links():
             'number_of_resources': count,
             'number_of_errors': len(table)}
 
-def resources_formats():
+def resources_formats(organization=None):
     s = model.Session
     R = model.Resource
+    P = model.Package
+    O = model.Group
+
     q = s.query(coalesce(R.format, ''), func.count(R.format))\
+         .join(P, P.id == R.package_id)\
+         .filter(and_(R.state == 'active',
+                      P.state == 'active'))\
          .group_by(coalesce(R.format, ''))\
          .order_by(desc(func.count(R.format)))
+
+    if organization:
+        if organization:
+            q = q.join(O, O.id == P.owner_org).filter(O.name==organization)
 
     q_count = s.query(func.count(R.format))
 
@@ -93,9 +107,9 @@ def all_reports():
     broken_link_info = {
         'name': 'broken-links',
         'description': t._("List datasets with resources that are non-existent or return error response"),
-        'option_defaults': {},
+        'option_defaults': org_options.copy(),
         'generate': report_broken_links,
-        'option_combinations': None,
+        'option_combinations': get_organizations,
         'template': 'report/broken_links_report.html',
     }
 
