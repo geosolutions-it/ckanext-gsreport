@@ -24,27 +24,28 @@ DEFAULT_ORG_CTX.update(dict((k, False) for k in ('include_tags',
                                                  'include_extras',
                                                  'include_followers',)))
 
-org_options = OrderedDict({'organization': None})
 
 def get_organizations():
     call = t.get_action('organization_list')
     orgs = call(DEFAULT_ORG_CTX, {})
-    return [{'organization': org['name']} for org in orgs]
+    return [{'organization': org} for org in orgs]
     
+org_options = OrderedDict({'organization': None})
 
 def report_licenses(organization=None):
     s = model.Session
     P = model.Package
-
+    O = model.Group
     q = s.query(coalesce(P.license_id, ''), func.count(P.license_id))\
+         .filter(and_(P.state=='active',
+                      P.type=='dataset'))\
          .group_by(coalesce(P.license_id, ''))\
          .order_by(desc(func.count(P.license_id)))
 
     if organization:
-        q = q.filter(P.owner_org==organization)
+        q = q.join(O, O.id == P.owner_org).filter(O.name==organization)
     count = q.count()
     table = [{'license': r[0], 'count': r[1]} for r in q]
-
     return {'table': table,
             'number_of_licenses': count}
 
