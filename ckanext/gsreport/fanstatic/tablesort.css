@@ -21,19 +21,14 @@ table.tablesorter .header {
 	background-image: url('/gsreport/img/bg.png');
 	background-repeat: no-repeat;
     background-position: left center;
-	border-left: 1px solid #FFF;
-	border-right: 1px solid #000;
-	border-top: 1px solid #FFF;
 	padding-left: 30px;
 	padding-top: 8px;
 	height: auto;
 }
 table.tablesorter .headerSortUp {
 	background-image: url('/gsreport/img/asc.png');
-	background-repeat: no-repeat;
 }
 table.tablesorter .headerSortDown {
 	background-image: url('/gsreport/img/desc.png');
-	background-repeat: no-repeat;
 }
 
