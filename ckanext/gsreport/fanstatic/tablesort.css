@@ -6,20 +6,21 @@ table.tablesorter {
 table.tablesorter th {
 	text-align: left;
 	padding: 5px;
-	background-color: #6E6E6E;
+    background-color: #eaeaee;
 }
 table.tablesorter td {
 	padding: 5px;
 }
 table.tablesorter .even {
-	background-color: #3D3D3D;
+	background-color: #bbb;
 }
 table.tablesorter .odd {
-	background-color: #6E6E6E;
+	background-color: #aaa;
 }
 table.tablesorter .header {
 	background-image: url('/gsreport/img/bg.png');
 	background-repeat: no-repeat;
+    background-position: left center;
 	border-left: 1px solid #FFF;
 	border-right: 1px solid #000;
 	border-top: 1px solid #FFF;
