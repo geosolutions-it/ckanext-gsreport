@@ -1,6 +1,6 @@
 # ckanext-gsreport
 
-CKAN report infrastructure
+CKAN report infrastructure.
 
 ## Purpose
 
