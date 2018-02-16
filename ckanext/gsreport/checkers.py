@@ -216,6 +216,8 @@ def check_http(res, res_url, return_headers=False):
     """
     out = {'headers': None,
            'code': None}
+    if isinstance(res_url, unicode):
+        res_url = res_url.encode('utf-8')
     try:
         resp = urlopen(res_url)
     except IOError, err:
