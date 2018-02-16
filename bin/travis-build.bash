@@ -68,7 +68,7 @@ paster db init -c test-core.ini
 cd -
 
 echo "Installing ckanext-gsreport and its requirements..."
-git clone https://github.com/ckan/ckanext-report
+git clone https://github.com/datagovuk/ckanext-report
 cd ckanext-report
 python setup.py develop
 paster --plugin=ckanext-report report initdb -c ../ckan/test-core.ini
