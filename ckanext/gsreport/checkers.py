@@ -125,7 +125,7 @@ def check_ows(res, res_url, format):
     that may be an indication that url is not OWS.
     """
     out = _check_ows(res, res_url, format)
-    if out:
+    if out and out.get('error'):
         out_http = check_http(res, res_url, return_headers=True)
         # we have invalid ows and valid http check
         # let's update it with http responses and mark with the message
@@ -171,8 +171,8 @@ def _check_ows(res, res_url, format):
         try:
             client = client_cls(new_url)
         # bad version will cause Attr error
-        except AttributeError:
-            log.debug("OWS service %s is not using %s params", res_url, params)
+        except AttributeError, err:
+            log.info("OWS service %s is not using %s params: %s", res_url, params, err)
             continue
         except urllib2.URLError, err:
             out['error'] = 'connection-error'
