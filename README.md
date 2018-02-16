@@ -15,17 +15,24 @@ Reports available:
 
 This extension requires `ckanext-report` and `owslib` to be installed before using `ckanext-gsreport`.
 
-1. Clone repository and install package:
+1. Install `ckanext-report` and init db:
+
+> $ git clone https://github.com/datagovuk/ckanext-report.git
+ $ cd ckanext-report
+ $ pip install -e .
+ $ paster --plugin=ckanext-report report initdb --config=path/to/config.ini
+
+2. Clone repository and install package:
 
 > $ git clone https://github.com/geosolutions-it/ckanext-gsreport.git
  $ cd ckanext-gsreport
  $ pip install -e .
 
-2. Add `status_reports` to plugins. **Note** Order of entries matters. This plugin should be placed **before** `report` plugin.
+3. Add `status_reports` to plugins. **Note** Order of entries matters. This plugin should be placed **before** `report` plugin.
 
 > ckan.plugins = .. status_reports report
 
-3. Run reports generation. 
+4. Run reports generation. 
 
 > paster --plugin=ckanext-report report generate --config=path/to/config.ini
 
