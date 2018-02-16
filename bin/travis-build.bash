@@ -74,6 +74,10 @@ python setup.py develop
 paster --plugin=ckanext-report report initdb -c ../ckan/test-core.ini
 cd -
 
+echo "Installing ckanext-dcatapit and its requirements..."
+python setup.py develop
+
+
 echo "Moving test.ini into a subdir..."
 mkdir subdir
 mv test.ini subdir
