@@ -68,8 +68,11 @@ paster db init -c test-core.ini
 cd -
 
 echo "Installing ckanext-gsreport and its requirements..."
+git clone https://github.com/ckan/ckanext-report
+cd ckanext-report
 python setup.py develop
-pip install -r requirements.txt
+paster --plugin=ckanext-report report initdb -c ../ckan/test-core.ini
+cd -
 
 echo "Moving test.ini into a subdir..."
 mkdir subdir
