@@ -1,0 +1,20 @@
+<ul>
+    <li>{% trans %}Number of licenses  used{% endtrans %}: {{ data.number_of_formats }}</li>
+</ul>
+
+<table class="table table-bordered table-condensed tablesorter">
+    <thead>
+        <tr>
+            <th>{% trans %}License{% endtrans %}</th>
+            <th>{% trans %}Count{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in table %}
+            <tr>
+                <td><a href="{{ site_url }}/dataset?license_id={{row.license }}">{{ row.license or _('not specified') }}</a></td>
+                <td>{{ row.count }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
