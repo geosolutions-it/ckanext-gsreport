@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-12 14:21+0100\n"
+"POT-Creation-Date: 2018-02-16 13:34+0100\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -30,17 +30,17 @@ msgid ""
 " {}"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:72
+#: ckanext/gsreport/reports.py:109
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:81
+#: ckanext/gsreport/reports.py:118
 msgid "List formats used in resources"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:90
+#: ckanext/gsreport/reports.py:127
 msgid "List of licenses used"
 msgstr ""
 
@@ -80,6 +80,8 @@ msgstr ""
 
 #: ckanext/gsreport/templates/report/index.html:3
 #: ckanext/gsreport/templates/report/index.html:6
+#: ckanext/gsreport/templates/report/view.html:3
+#: ckanext/gsreport/templates/report/view.html:6
 msgid "Reports"
 msgstr ""
 
@@ -105,6 +107,18 @@ msgstr ""
 msgid "not specified"
 msgstr ""
 
+#: ckanext/gsreport/templates/report/option_org.html:8
+#: ckanext/gsreport/templates/report/option_organization.html:9
+msgid "Organization"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/option_org.html:11
+#: ckanext/gsreport/templates/report/option_org.html:20
+#: ckanext/gsreport/templates/report/option_organization.html:12
+#: ckanext/gsreport/templates/report/option_organization.html:16
+msgid "Index of all organizations"
+msgstr ""
+
 #: ckanext/gsreport/templates/report/resources_format_report.html:2
 msgid "Number of formats used"
 msgstr ""
@@ -115,5 +129,39 @@ msgstr ""
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:9
 msgid "Format"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:19
+msgid "Generated"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:23
+msgid "Refresh report"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:26
+msgid "Refresh"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:28
+msgid ""
+"As a system administrator you are able to refresh this report on demand "
+"by clicking the 'Refresh' button."
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:34
+msgid "Options"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:50
+msgid "Download"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:55
+msgid "Results"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/view.html:57
+msgid "No results found."
 msgstr ""
 
