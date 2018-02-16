@@ -34,86 +34,86 @@ msgstr ""
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
-msgstr ""
+msgstr "Listet Datensätze mit Ressourcen auf, die nicht vorhanden sind, oder gibt eine Fehlerantwort zurück"
 
 #: ckanext/gsreport/reports.py:81
 msgid "List formats used in resources"
-msgstr ""
+msgstr "Listenformate die in Ressourcen verwendet werden"
 
 #: ckanext/gsreport/reports.py:90
 msgid "List of licenses used"
-msgstr ""
+msgstr "Liste der verwendeten Lizenzen"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:2
 msgid "Number of resources checked"
-msgstr ""
+msgstr "Anzahl der geprüften Ressourcen"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:3
 msgid "Number of resources failed"
-msgstr ""
+msgstr "Anzahl der Ressourcen fehlgeschlagen"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:9
 #: ckanext/gsreport/templates/report/broken_links_report.html:26
 msgid "Resource"
-msgstr ""
+msgstr "Ressource"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:12
 #: ckanext/gsreport/templates/report/broken_links_report.html:29
 msgid "Dataset"
-msgstr ""
+msgstr "Datensatz"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:15
 msgid "Checked at"
-msgstr ""
+msgstr "Überprüft bei"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:16
 msgid "Type of error"
-msgstr ""
+msgstr "Art des Fehlers"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:17
 msgid "Response code"
-msgstr ""
+msgstr "Antwortcode"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:20
 msgid "Response data"
-msgstr ""
+msgstr "Antwortdaten"
 
 #: ckanext/gsreport/templates/report/index.html:3
 #: ckanext/gsreport/templates/report/index.html:6
 msgid "Reports"
-msgstr ""
+msgstr "Berichte"
 
 #: ckanext/gsreport/templates/report/index.html:40
 msgid "View Report"
-msgstr ""
+msgstr "Zeige Bericht"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:2
 msgid "Number of licenses used"
-msgstr ""
+msgstr "Anzahl der verwendeten Lizenzen"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:8
 msgid "License"
-msgstr ""
+msgstr "Lizenz"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:9
 #: ckanext/gsreport/templates/report/resources_format_report.html:10
 msgid "Count"
-msgstr ""
+msgstr "Anzahl"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:15
 #: ckanext/gsreport/templates/report/resources_format_report.html:16
 msgid "not specified"
-msgstr ""
+msgstr "keine Angabe"
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:2
 msgid "Number of formats used"
-msgstr ""
+msgstr "Anzahl der verwendeten Formate"
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:3
 msgid "Number of resources"
-msgstr ""
+msgstr "Anzahl der Ressourcen"
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:9
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
