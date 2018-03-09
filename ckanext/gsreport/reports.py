@@ -107,14 +107,12 @@ def resources_formats(organization=None):
             'number_of_resources': res_count,
             'number_of_formats': count}
 
-broken_links_options = org_options.copy()
-broken_links_options['dataset'] = None
 
 def all_reports():
     broken_link_info = {
         'name': 'broken-links',
         'description': t._("List datasets with resources that are non-existent or return error response"),
-        'option_defaults': broken_links_options,
+        'option_defaults': org_options.copy(),
         'generate': report_broken_links,
         'option_combinations': get_organizations,
         'template': 'report/broken_links_report.html',
