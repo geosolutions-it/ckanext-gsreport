@@ -49,7 +49,7 @@ def report_licenses(organization=None):
     return {'table': table,
             'number_of_licenses': count}
 
-def report_broken_links(organization=None):
+def report_broken_links(organization=None, dataset=None):
     s = model.Session
     R = model.Resource
     D = model.Package
@@ -63,6 +63,10 @@ def report_broken_links(organization=None):
 
     if organization:
         q = q.join(O, O.id == D.owner_org).filter(O.name==organization)
+    if dataset:
+        q = q.filter(or_(D.name == dataset,
+                         D.id == dataset,
+                         D.title == dataset))
 
     table = []
     count = q.count()
@@ -102,6 +106,7 @@ def resources_formats(organization=None):
     return {'table': table,
             'number_of_resources': res_count,
             'number_of_formats': count}
+
 
 def all_reports():
     broken_link_info = {
