@@ -15,7 +15,7 @@ ckan.module('autosubmit', function($){
             $.proxyAll(this, /_on/);
             var that = this;
             $(this.el).change(function () {
-                  $(this).closest("form").submit();
+                  document.location = $(this).val();
               });
         }
     }
