@@ -38,6 +38,9 @@ class StatusReportPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
         toolkit.add_resource('fanstatic', 'ckanext-gsreport')
+        from ckanext.gsreport.helpers import url_for
+        from ckan.lib import helpers 
+        toolkit.url_for = url_for
 
     # ------------- IReport ---------------#
 
