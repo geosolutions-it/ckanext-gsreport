@@ -19,9 +19,6 @@ def url_for(*args, **kwargs):
         u = args[0]
         if u.startswith('/'):
             return _local(u)
-        mapper = request_config().mapper
-        if not mapper.routematch(u):
-            return _local(u)
     return ufunc(*args, **kwargs)
 
 helpers.url_for = url_for
