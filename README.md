@@ -49,9 +49,7 @@ Report can be generated in two ways:
 
    > paster --plugin=ckanext-report report generate $report-name --config=path/to/config.ini
 
- * in UI, opening `/report` url:
-   * when user opens report page for the first time (with no data in report),
-   * when user cliks 'refresh' button
+ * in UI, opening `/report` url when user opens report page for the first time (with no data in report),
 
 **Warning** 
 ** this can take a while to produce results. Especially `broken-links` report may take significant amount of time, because it will check each resource for availability.**
