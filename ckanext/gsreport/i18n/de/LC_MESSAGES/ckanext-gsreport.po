@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-02-16 18:04+0100\n"
+"POT-Creation-Date: 2018-03-16 12:24+0100\n"
 "PO-Revision-Date: 2018-02-12 13:25+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid ""
 " {}"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:116
+#: ckanext/gsreport/reports.py:114
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
@@ -38,11 +38,11 @@ msgstr ""
 "Listet Datensätze mit Ressourcen auf, die nicht vorhanden sind, oder gibt"
 " eine Fehlerantwort zurück"
 
-#: ckanext/gsreport/reports.py:125
+#: ckanext/gsreport/reports.py:123
 msgid "List formats used in resources"
 msgstr "Listenformate die in Ressourcen verwendet werden"
 
-#: ckanext/gsreport/reports.py:134
+#: ckanext/gsreport/reports.py:132
 msgid "List of licenses used"
 msgstr "Liste der verwendeten Lizenzen"
 
@@ -138,32 +138,30 @@ msgid "Generated"
 msgstr ""
 
 #: ckanext/gsreport/templates/report/view.html:23
-msgid "Refresh report"
-msgstr ""
-
-#: ckanext/gsreport/templates/report/view.html:26
-msgid "Refresh"
-msgstr ""
-
-#: ckanext/gsreport/templates/report/view.html:28
-msgid ""
-"As a system administrator you are able to refresh this report on demand "
-"by clicking the 'Refresh' button."
-msgstr ""
-
-#: ckanext/gsreport/templates/report/view.html:34
 msgid "Options"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/view.html:50
+#: ckanext/gsreport/templates/report/view.html:39
 msgid "Download"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/view.html:55
+#: ckanext/gsreport/templates/report/view.html:44
 msgid "Results"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/view.html:57
+#: ckanext/gsreport/templates/report/view.html:46
 msgid "No results found."
 msgstr ""
+
+#~ msgid "Refresh report"
+#~ msgstr ""
+
+#~ msgid "Refresh"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "As a system administrator you are "
+#~ "able to refresh this report on "
+#~ "demand by clicking the 'Refresh' button."
+#~ msgstr ""
 
