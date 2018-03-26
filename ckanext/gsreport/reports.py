@@ -8,6 +8,7 @@ from ckan import model
 import ckan.plugins.toolkit as t
 from ckanext.report import lib
 from ckan.common import OrderedDict
+from ckan.model.license import LicenseRegister
 from sqlalchemy import desc
 
 from ckanext.gsreport.checkers import check_url
@@ -23,12 +24,12 @@ DEFAULT_ORG_CTX.update(dict((k, False) for k in ('include_tags',
                                                  'include_groups',
                                                  'include_extras',
                                                  'include_followers',)))
-
+license_reg = LicenseRegister()
 
 def get_organizations():
     call = t.get_action('organization_list')
     orgs = call(DEFAULT_ORG_CTX, {})
-    return [{'organization': org} for org in orgs]
+    return [{'organization': org} for org in orgs] + [{'organization': None}]
     
 org_options = OrderedDict({'organization': None})
 
@@ -45,7 +46,12 @@ def report_licenses(organization=None):
     if organization:
         q = q.join(O, O.id == P.owner_org).filter(O.name==organization)
     count = q.count()
-    table = [{'license': r[0], 'count': r[1]} for r in q]
+
+    def get_license(lid):
+        l = license_reg.get(r[0])
+        return l.title if l else lid
+
+    table = [{'title': get_license(r[0]), 'license': r[0], 'count': r[1]} for r in q]
     return {'table': table,
             'number_of_licenses': count}
 
