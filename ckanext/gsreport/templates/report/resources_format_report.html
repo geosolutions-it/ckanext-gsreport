@@ -51,10 +51,10 @@
         {% for row in table %}
             <tr>
                 <td>
-                <a href="{{ h.url_for('report', report_name='resources-format') }}?res_format={{ row.format }}">{{ row.format or _('not specified') }}</a></td>
+                <a href="{{ h.url_for('report', report_name='resources-format', res_format=row.format) }}">{{ row.format or _('not specified') }}</a></td>
 
                 <td>
-                <a href="{{ h.url_for(controller='package', action='search') }}?res_format={{ row.format or 'not-specified' }}"> {{ row.count }}</a></td>
+                <a href="{{ h.url_for(controller='package', action='search', res_format=(row.format or 'not-specified')) }}"> {{ row.count }}</a></td>
             </tr>
         {% endfor %}
     </tbody>

@@ -38,11 +38,15 @@ def dformat(val):
         return val.strftime(DATE_FORMAT)
 
 
-
-def get_organizations():
+def _get_organizations():
     call = t.get_action('organization_list')
     orgs = call(DEFAULT_ORG_CTX, {})
-    return [{'organization': org} for org in orgs] + [{'organization': None}]
+    return orgs + [None]
+
+
+def get_organizations():
+    orgs = _get_organizations()
+    return [{'organization': org} for org in orgs]
 
 def get_formats():
     s = model.Session
@@ -59,14 +63,13 @@ def get_formats():
 
 def resources_format_options_combinations():
     formats = get_formats()
-    organizations = [o['organization'] for o in get_organizations()]
-    param_names = ('res_format', 'organization',)
+    organizations = _get_organizations()
+    param_names = ('res_format', 'org',)
     
     return [ dict(zip(param_names, prod)) for prod in product(formats, organizations)]
 
 org_options = OrderedDict({'organization': None})
-resources_format_options = org_options.copy()
-resources_format_options.update({'res_format': None})
+resources_format_options = OrderedDict({'org': None, 'res_format': None})
 
 
 def report_licenses(organization=None):
@@ -122,7 +125,7 @@ def report_broken_links(organization=None, dataset=None):
             'number_of_resources': count,
             'number_of_errors': len(table)}
 
-def resources_formats(organization=None, res_format=None):
+def resources_formats(org=None, res_format=None):
     s = model.Session
     R = model.Resource
     P = model.Package
@@ -155,8 +158,8 @@ def resources_formats(organization=None, res_format=None):
                           R.format==res_format))\
              .order_by(O.name, P.title, R.name)
 
-        if organization:
-             q = q.filter(O.name==organization)
+        if org:
+             q = q.filter(O.name==org)
         q_count = s.query(func.count(R.format))
         count = q.count()
         res_count = q_count.one()[0]
@@ -196,7 +199,7 @@ def resources_formats(organization=None, res_format=None):
 
     return {'table': table,
             'number_of_resources': res_count,
-            'organization': organization,
+            'organization': org,
             'res_format': res_format,
             'number_of_formats': count}
 
