@@ -47,8 +47,10 @@ class StatusReportPlugin(plugins.SingletonPlugin):
     def before_index(self, dataset_dict):
         # replace empty strings in res_format and license_id to EMPTY_STRING_PLACEHOLDER
         res_formats = dataset_dict.get('res_format') or []
+        res_format = list(set([r for r in res_formats if r]))
         res_formats = list(set([r or EMPTY_STRING_PLACEHOLDER for r in res_formats]))
-        dataset_dict['res_format'] = res_formats
+        dataset_dict['res_format'] = res_format
+        dataset_dict['res_formats'] = res_format
         dataset_dict['license_id'] = dataset_dict.get('license_id') or EMPTY_STRING_PLACEHOLDER
         return dataset_dict
 
@@ -68,4 +70,3 @@ class StatusReportPlugin(plugins.SingletonPlugin):
         ReportPlugin.get_auth_functions = fake_get_auth_functions
         
         return out
-

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from datetime import datetime
+from itertools import product
 import logging
 from sqlalchemy import func, and_, or_
 from sqlalchemy.sql.functions import coalesce
@@ -26,12 +28,46 @@ DEFAULT_ORG_CTX.update(dict((k, False) for k in ('include_tags',
                                                  'include_followers',)))
 license_reg = LicenseRegister()
 
+DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
+
+def dformat(val):
+    """
+    Return timestamp as string
+    """
+    if isinstance(val, datetime):
+        return val.strftime(DATE_FORMAT)
+
+
+
 def get_organizations():
     call = t.get_action('organization_list')
     orgs = call(DEFAULT_ORG_CTX, {})
     return [{'organization': org} for org in orgs] + [{'organization': None}]
+
+def get_formats():
+    s = model.Session
+    R = model.Resource
+    P = model.Package
+    O = model.Group
+
+    q = s.query(coalesce(R.format, ''))\
+         .join(P, P.id == R.package_id)\
+         .filter(and_(R.state == 'active',
+                      P.state == 'active'))\
+         .group_by(coalesce(R.format, ''))
+    return [item[0] for item in q] + [None]
+
+def resources_format_options_combinations():
+    formats = get_formats()
+    organizations = [o['organization'] for o in get_organizations()]
+    param_names = ('res_format', 'organization',)
     
+    return [ dict(zip(param_names, prod)) for prod in product(formats, organizations)]
+
 org_options = OrderedDict({'organization': None})
+resources_format_options = org_options.copy()
+resources_format_options.update({'res_format': None})
+
 
 def report_licenses(organization=None):
     s = model.Session
@@ -76,7 +112,7 @@ def report_broken_links(organization=None, dataset=None):
 
     table = []
     count = q.count()
-    log.info("Checking broken links for %s items", count)
+    log. info("Checking broken links for %s items", count)
     for res in q:
         out = check_url(res)
         if out:
@@ -86,31 +122,82 @@ def report_broken_links(organization=None, dataset=None):
             'number_of_resources': count,
             'number_of_errors': len(table)}
 
-def resources_formats(organization=None):
+def resources_formats(organization=None, res_format=None):
     s = model.Session
     R = model.Resource
     P = model.Package
     O = model.Group
 
-    q = s.query(coalesce(R.format, ''), func.count(1))\
-         .join(P, P.id == R.package_id)\
-         .filter(and_(R.state == 'active',
-                      P.state == 'active'))\
-         .group_by(coalesce(R.format, ''))\
-         .order_by(desc(func.count(R.format)))
+    if res_format:
 
-    if organization:
+        q = s.query(O.name,
+                    P.title,
+                    P.id,
+                    P.name,
+                    P.notes,
+                    coalesce(R.format, ''),
+                    R.name,
+                    R.url,
+                    R.id,
+                    R.size,
+                    R.last_modified,
+                    R.description,
+                    R.created,
+                    R.id,
+                    R.state,
+                    P.private
+                    ,
+                    )\
+             .select_from(R)\
+             .join(P, P.id == R.package_id)\
+             .join(O, O.id == P.owner_org)\
+             .filter(and_(P.state == 'active',
+                          R.format==res_format))\
+             .order_by(O.name, P.title, R.name)
+
         if organization:
-            q = q.join(O, O.id == P.owner_org).filter(O.name==organization)
+             q = q.filter(O.name==organization)
+        q_count = s.query(func.count(R.format))
+        count = q.count()
+        res_count = q_count.one()[0]
 
-    q_count = s.query(func.count(R.format))
+        table = [{'organization': {'name': r[0]},
+                  'dataset': {'title': r[1],
+                              'id': r[2],
+                              'name': r[3],
+                               'private': r[15],
+                              'notes': r[4]},
+                  'resource': {'format': r[5],
+                               'name': r[6],
+                               'url': r[7],
+                               'id': r[8],
+                               'size': r[9],
+                               'last_modified': dformat(r[10]),
+                               'description': r[11],
+                               'created': dformat(r[12]),
+                               'id': r[13],
+                               'state': r[14],
+                              }
+                    } 
+                  for r in q]
 
-    count = q.count()
-    res_count = q_count.one()[0]
-    table = [{'format': r[0], 'count': r[1]} for r in q]
+    else:
+        q = s.query(coalesce(R.format, ''), func.count(1))\
+             .join(P, P.id == R.package_id)\
+             .filter(and_(R.state == 'active',
+                          P.state == 'active'))\
+             .group_by(coalesce(R.format, ''))\
+             .order_by(desc(func.count(R.format)))
+        table = [{'format': r[0], 'count': r[1]} for r in q]
+        
+        q_count = s.query(func.count(R.format))
+        count = q.count()
+        res_count = q_count.one()[0]
 
     return {'table': table,
             'number_of_resources': res_count,
+            'organization': organization,
+            'res_format': res_format,
             'number_of_formats': count}
 
 
@@ -127,9 +214,9 @@ def all_reports():
     resources_format_info = {
         'name': 'resources-format',
         'description': t._("List formats used in resources"),
-        'option_defaults': org_options.copy(),
+        'option_defaults': resources_format_options,
         'generate': resources_formats,
-        'option_combinations': get_organizations,
+        'option_combinations': resources_format_options_combinations,
         'template': 'report/resources_format_report.html',
     }
 

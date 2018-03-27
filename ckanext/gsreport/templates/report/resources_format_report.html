@@ -1,9 +1,46 @@
 <ul>
+    {% if not data.res_format %}
     <li>{% trans %}Number of formats used{% endtrans %}: {{ data.number_of_formats }}</li>
+    {% endif %}
     <li>{% trans %}Number of resources{% endtrans %}: {{ data.number_of_resources }}</li>
 </ul>
-
 <table class="table table-bordered table-condensed tablesorter" data-module="tablesorter">
+    {% if data.res_format %}
+    <thead>
+        <tr>
+            <th>{% trans %}Organization{% endtrans %}</th>
+            <th>{% trans %}Dataset{% endtrans %}</th>
+            <th>{% trans %}Notes{% endtrans %}</th>
+            <th>{% trans %}Resource{% endtrans %}</th>
+            <th>{% trans %}Description{% endtrans %}</th>
+            <th>{% trans %}Format{% endtrans %}</th>
+            <th>{% trans %}Created{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in table %}
+            <tr>
+                <td>{{ row.organization.name }}</td>
+                <td><a href="{{ h.url_for('dataset_read', id=row.dataset.id) }}">{{ row.dataset.title }}</a></td>
+                <td>
+                    {% if row.resource.state != 'active' %}{% trans %}Inactive{% endtrans %}{% endif %}
+                    {% if row.resource.private %}{% trans %}Private{% endtrans %}{% endif %}
+
+                </td>
+                <td><a href="{{ h.url_for(controller='package', action='resource_read', id=row.dataset.id, resource_id=row.resource.id) }}">
+                    {% if row.resource.title %}
+                        {{ row.resource.title }}<br/>
+                    {% endif %}
+                        {{ row.resource.url }}
+                    </a>
+                </td>
+                <td>{{ row.resource.description }}</td>
+                <td>{{ row.resource.format }}</td>
+                <td>{{ row.resource.created }}</td>
+            <tr>
+        {% endfor %}
+    </tbody>
+    {% else %}
     <thead>
         <tr>
             <th>{% trans %}Format{% endtrans %}</th>
@@ -13,11 +50,14 @@
     <tbody>
         {% for row in table %}
             <tr>
-                <td><a href="{{ h.url_for(controller='package', action='search') }}?res_format={{ row.format or 'not-specified' }}">{{ row.format or _('not specified') }}</a></td>
+                <td>
+                <a href="{{ h.url_for('report', report_name='resources-format') }}?res_format={{ row.format }}">{{ row.format or _('not specified') }}</a></td>
 
-
-                <td>{{ row.count }}</td>
+                <td>
+                <a href="{{ h.url_for(controller='package', action='search') }}?res_format={{ row.format or 'not-specified' }}"> {{ row.count }}</a></td>
             </tr>
         {% endfor %}
     </tbody>
+
+    {% endif %}
 </table>
