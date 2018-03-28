@@ -68,8 +68,13 @@ def resources_format_options_combinations():
     
     return [ dict(zip(param_names, prod)) for prod in product(formats, organizations)]
 
+def broken_links_options_combinations():
+    organizations = _get_organizations()
+    return [{'org': org} for org in organizations]
+
 org_options = OrderedDict({'organization': None})
 resources_format_options = OrderedDict({'org': None, 'res_format': None})
+broken_links_options = OrderedDict({'org': None})
 
 
 def report_licenses(organization=None):
@@ -94,36 +99,105 @@ def report_licenses(organization=None):
     return {'table': table,
             'number_of_licenses': count}
 
-def report_broken_links(organization=None, dataset=None):
+BROKEN_LINKS_MARKER = None
+
+def report_broken_links(org=None, dataset=None):
+    """
+    """
+    # used in get_report_data to detect if report was
+    # created within the same session
+    global BROKEN_LINKS_MARKER
+    if BROKEN_LINKS_MARKER is None:
+        BROKEN_LINKS_MARKER = dformat(datetime.now())
+
+    from ckanext.report.report_registry import ReportRegistry, extract_entity_name
+    from ckanext.report.model import DataCache
+
+    def get_report_data(options_dict):
+        reg = ReportRegistry.instance()
+        rep = reg.get_report('broken-links')
+
+        entity_name = extract_entity_name(options_dict)
+        key = rep.generate_key(options_dict)
+        data, date = DataCache.get(entity_name, key, convert_json=True)
+        if data['marker'] == BROKEN_LINKS_MARKER if data else False:
+            return data
+
+    def get_report_stats(data, org_name):
+        out = {'organization': org_name,
+               'total': data['total'],
+               'errors': data['errors'],
+                }
+        out['errors']['resources_pct'] = data['errors']['resources'] * 1.0/data['total']['resources']
+        out['errors']['datasets_pct'] = data['errors']['datasets'] * 1.0/data['total']['datasets']
+        return out
+
     s = model.Session
     R = model.Resource
     D = model.Package
     O = model.Group
 
-    q = s.query(R)\
-         .join(D, D.id == R.package_id)\
-         .filter(and_(R.state == 'active',
-                      D.state == 'active'))\
-         .order_by(R.url)
+    if org or dataset:
+        q = s.query(R)\
+             .join(D, D.id == R.package_id)\
+             .filter(and_(R.state == 'active',
+                          D.state == 'active'))\
+             .order_by(R.url)
+        if org:
+            q = q.join(O, O.id == D.owner_org).filter(O.name==org)
+        if dataset:
+            q = q.filter(or_(D.name == dataset,
+                             D.id == dataset,
+                             D.title == dataset))
+        table = []
+        count = q.count()
+        log. info("Checking broken links for %s items", count)
 
-    if organization:
-        q = q.join(O, O.id == D.owner_org).filter(O.name==organization)
-    if dataset:
-        q = q.filter(or_(D.name == dataset,
-                         D.id == dataset,
-                         D.title == dataset))
+        # we need dataset count later, in summary report
+        dcount_q = s.query(D)\
+                    .filter(D.state == 'active')
+        if org:
+            dcount_q = dcount_q.join(O, O.id == D.owner_org).filter(O.name==org)
+        if dataset:
+            dcount_q = dcount_q.filter(or_(D.name == dataset,
+                                           D.id == dataset,
+                                           D.title == dataset))
+        dcount = dcount_q.count()
 
-    table = []
-    count = q.count()
-    log. info("Checking broken links for %s items", count)
-    for res in q:
-        out = check_url(res)
-        if out:
-            table.append(out)
+        # datasets with errors
+        derr = set()
+        for res in q:
+            out = check_url(res)
+            if out:
+                table.append(out)
+                derr.add(out['dataset_id'])
 
-    return {'table': table,
-            'number_of_resources': count,
-            'number_of_errors': len(table)}
+        return {'table': table,
+                'organization': org,
+                'dataset': dataset,
+                'marker': BROKEN_LINKS_MARKER,
+                'total': {'datasets': dcount,
+                          'resources': count},
+                'errors': {'datasets': len(derr),
+                           'resources': len(table)}
+                }
+    else:
+        table = []
+
+        for org_name in _get_organizations():
+            if not org_name:
+                continue
+            report_args = {'org': org_name, 'dataset': None}
+            data = get_report_data(report_args)
+            if not data:
+                raise ValueError("No report previously "
+                                 "cached for {}"
+                                 .format(BROKEN_LINKS_MARKER))
+            table.append(get_report_stats(data, org_name))
+        return {'table': table,
+                'organization': None,
+                'marker': BROKEN_LINKS_MARKER,
+                }
 
 def resources_formats(org=None, res_format=None):
     s = model.Session
@@ -210,9 +284,9 @@ def all_reports():
     broken_link_info = {
         'name': 'broken-links',
         'description': t._("List datasets with resources that are non-existent or return error response"),
-        'option_defaults': org_options.copy(),
+        'option_defaults': broken_links_options,
         'generate': report_broken_links,
-        'option_combinations': get_organizations,
+        'option_combinations': broken_links_options_combinations,
         'template': 'report/broken_links_report.html',
     }
 

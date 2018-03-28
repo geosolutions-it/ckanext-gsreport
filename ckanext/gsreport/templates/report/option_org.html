@@ -1,0 +1,24 @@
+{#
+Option snippet - organization
+
+value - Value of this option
+default - Default value for this option
+#}
+
+<span class="form-select control-group control-org">
+    <label for="option-org"> {{ _('Organization') }} </label>
+    {% set url_root = h.report__relative_url_for(organization=None) %}
+        <a href="{{ url_root }}">{% trans %}Index of all organizations{% endtrans %}</a>
+    {% set extras = request.environ.get('pylons.routes_dict') or request.view_args %}
+
+    <select id="option-org" name="org" class="inline js-auto-submit" data-module="autosubmit">
+        <option value="{{ url_root }}" {% if value == None %}selected="selected"{% endif %}>-- {{ _('Index of all organizations') }} --</option>
+        {% for org_name, org_title in h.report__organization_list() %}
+            {% set new_params=dict(org=org_name) %}
+            {% set x=extras.update(request.GET) %}
+            {% set x=extras.update(new_params) %}
+
+            <option value="{{ h.url_for(**extras) }}" {% if value == org_name %}selected="selected" {% endif %}> {{org_title}} </option>
+        {% endfor %}
+    </select>
+</span>
