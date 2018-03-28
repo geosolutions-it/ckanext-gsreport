@@ -32,7 +32,7 @@
                         {{ row.resource.url }}
                     </a>
                 </td>
-                <td>{{ row.resource.description }}</td>
+                <td>{{ row.resource.description|truncate(50) }}</td>
                 <td>{{ row.resource.format }}</td>
                 <td>{{ row.resource.created }}</td>
             <tr>

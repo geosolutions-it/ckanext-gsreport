@@ -49,6 +49,7 @@ class StatusReportPlugin(plugins.SingletonPlugin):
         res_formats = dataset_dict.get('res_format') or []
         res_format = list(set([r for r in res_formats if r]))
         res_formats = list(set([r or EMPTY_STRING_PLACEHOLDER for r in res_formats]))
+
         dataset_dict['res_format'] = res_format
         dataset_dict['res_formats'] = res_format
         dataset_dict['license_id'] = dataset_dict.get('license_id') or EMPTY_STRING_PLACEHOLDER
