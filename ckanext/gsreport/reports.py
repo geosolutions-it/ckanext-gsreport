@@ -183,7 +183,7 @@ def resources_formats(org=None, res_format=None):
                               }
                     } 
                   for r in q]
-
+        options_hide = False
     else:
         q = s.query(coalesce(R.format, ''), func.count(1))\
              .join(P, P.id == R.package_id)\
@@ -196,10 +196,12 @@ def resources_formats(org=None, res_format=None):
         q_count = s.query(func.count(R.format))
         count = q.count()
         res_count = q_count.one()[0]
+        options_hide = True
 
     return {'table': table,
             'number_of_resources': res_count,
             'organization': org,
+            'options_hide': options_hide,
             'res_format': res_format,
             'number_of_formats': count}
 

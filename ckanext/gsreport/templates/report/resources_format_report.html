@@ -10,7 +10,6 @@
         <tr>
             <th>{% trans %}Organization{% endtrans %}</th>
             <th>{% trans %}Dataset{% endtrans %}</th>
-            <th>{% trans %}Notes{% endtrans %}</th>
             <th>{% trans %}Resource{% endtrans %}</th>
             <th>{% trans %}Description{% endtrans %}</th>
             <th>{% trans %}Format{% endtrans %}</th>
@@ -21,12 +20,11 @@
         {% for row in table %}
             <tr>
                 <td>{{ row.organization.name }}</td>
-                <td><a href="{{ h.url_for('dataset_read', id=row.dataset.id) }}">{{ row.dataset.title }}</a></td>
-                <td>
-                    {% if row.resource.state != 'active' %}{% trans %}Inactive{% endtrans %}{% endif %}
-                    {% if row.resource.private %}{% trans %}Private{% endtrans %}{% endif %}
-
-                </td>
+                <td><a href="{{ h.url_for('dataset_read', id=row.dataset.id) }}">{{ row.dataset.title }}
+                {% if row.dataset.private %}
+                    <span class="icon-lock" title="private"></span>
+                {% endif %}
+                </a></td>
                 <td><a href="{{ h.url_for(controller='package', action='resource_read', id=row.dataset.id, resource_id=row.resource.id) }}">
                     {% if row.resource.title %}
                         {{ row.resource.title }}<br/>

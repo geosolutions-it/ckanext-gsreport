@@ -50,7 +50,7 @@
                       {{ _('Generated') }}: {{ h.report__render_datetime(report_date, '%d/%m/%Y %H:%M') }}
                   </p>
 
-                  {% if options %}
+                  {% if options and not data.options_hide %}
                     <h3>{{ _('Options') }}</h3>
                     <form action="">
                       {% for key, value in options.items() %}
