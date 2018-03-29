@@ -13,6 +13,7 @@
             <tr>
                 <th>{% trans %}Organization{% endtrans %}</th>
                 <th>{% trans %}All Datasets{% endtrans %}</th>
+                <th>{% trans %}All resources{% endtrans %}</th>
                 <th>{% trans %}Datasets with broken links{% endtrans %}</th>
                 <th>{% trans %}Broken links{% endtrans %}</th>
                 <th>{% trans %}% Broken links{% endtrans %}</th>
@@ -23,6 +24,7 @@
             <tr>
                 <td><a href="?org={{ row.organization }}">{{ row.organization }}</a></td>
                 <td>{{ row.total.datasets }}</td>
+                <td>{{ row.total.resources }}</td>
                 <td>{{ row.errors.datasets }}</td>
                 <td>{{ row.errors.resources }}</td>
                 <td>{{ row.errors.resources_pct|round(precision=0) }}</td>

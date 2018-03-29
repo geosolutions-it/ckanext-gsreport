@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-29 14:46+0200\n"
+"POT-Creation-Date: 2018-03-29 15:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,41 +70,45 @@ msgid "All Datasets"
 msgstr ""
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:16
-msgid "Datasets with broken links"
+msgid "All resources"
 msgstr ""
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:17
-msgid "Broken links"
+msgid "Datasets with broken links"
 msgstr ""
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:18
+msgid "Broken links"
+msgstr ""
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:19
 msgid "% Broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:36
+#: ckanext/gsreport/templates/report/broken_links_report.html:38
 #: ckanext/gsreport/templates/report/resources_format_report.html:12
 msgid "Dataset"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:37
+#: ckanext/gsreport/templates/report/broken_links_report.html:39
 msgid "Title"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:38
+#: ckanext/gsreport/templates/report/broken_links_report.html:40
 #: ckanext/gsreport/templates/report/resources_format_report.html:15
 #: ckanext/gsreport/templates/report/resources_format_report.html:44
 msgid "Format"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:39
+#: ckanext/gsreport/templates/report/broken_links_report.html:41
 msgid "URL"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:40
+#: ckanext/gsreport/templates/report/broken_links_report.html:42
 msgid "Status"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:41
+#: ckanext/gsreport/templates/report/broken_links_report.html:43
 msgid "Reason"
 msgstr ""
 
