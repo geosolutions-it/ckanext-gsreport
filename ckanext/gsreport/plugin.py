@@ -4,12 +4,11 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
 from ckanext.report.interfaces import IReport
-from ckanext.gsreport.reports import all_reports
+from ckanext.gsreport.reports import all_reports, EMPTY_STRING_PLACEHOLDER
 
 log = logging.getLogger(__name__)
 
 
-EMPTY_STRING_PLACEHOLDER='not-specified'
 
 def check_if_super(context, data_dict=None):
     out = {'success': False,

@@ -17,8 +17,7 @@ from ckanext.gsreport.checkers import check_url
 log = logging.getLogger(__name__)
 
 
-
-
+EMPTY_STRING_PLACEHOLDER='not-specified'
 DEFAULT_CTX = {'ignore_auth': True}
 DEFAULT_ORG_CTX = DEFAULT_CTX.copy()
 DEFAULT_ORG_CTX.update(dict((k, False) for k in ('include_tags',
@@ -59,7 +58,7 @@ def get_formats():
          .filter(and_(R.state == 'active',
                       P.state == 'active'))\
          .group_by(coalesce(R.format, ''))
-    return [item[0] for item in q] + [None]
+    return [item[0] for item in q] + [None, EMPTY_STRING_PLACEHOLDER]
 
 def resources_format_options_combinations():
     formats = get_formats()
@@ -229,12 +228,18 @@ def resources_formats(org=None, res_format=None):
              .select_from(R)\
              .join(P, P.id == R.package_id)\
              .join(O, O.id == P.owner_org)\
-             .filter(and_(P.state == 'active',
-                          R.format==res_format))\
              .order_by(O.name, P.title, R.name)
+
+        if res_format != EMPTY_STRING_PLACEHOLDER:
+            q = q.filter(and_(P.state == 'active',
+                              R.format==res_format))
+        else:
+            q = q.filter(and_(P.state == 'active',
+                              R.format.in_(['', None,])))
 
         if org:
              q = q.filter(O.name==org)
+
         q_count = s.query(func.count(R.format))
         count = q.count()
         res_count = q_count.one()[0]
@@ -260,11 +265,11 @@ def resources_formats(org=None, res_format=None):
                   for r in q]
         options_hide = False
     else:
-        q = s.query(coalesce(R.format, ''), func.count(1))\
+        q = s.query(coalesce(R.format, EMPTY_STRING_PLACEHOLDER), func.count(1))\
              .join(P, P.id == R.package_id)\
              .filter(and_(R.state == 'active',
                           P.state == 'active'))\
-             .group_by(coalesce(R.format, ''))\
+             .group_by(coalesce(R.format, EMPTY_STRING_PLACEHOLDER))\
              .order_by(desc(func.count(R.format)))
         table = [{'format': r[0], 'count': r[1]} for r in q]
         
