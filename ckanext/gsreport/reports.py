@@ -83,6 +83,7 @@ def report_licenses(organization=None):
     O = model.Group
     q = s.query(coalesce(P.license_id, ''), func.count(1))\
          .filter(and_(P.state=='active',
+                      P.private == False,
                       P.type=='dataset'))\
          .group_by(coalesce(P.license_id, ''))\
          .order_by(desc(func.count(P.license_id)))
