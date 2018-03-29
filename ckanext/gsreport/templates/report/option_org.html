@@ -9,7 +9,7 @@ default - Default value for this option
     <label for="option-org"> {{ _('Organization') }} </label>
     {% set url_root = h.report__relative_url_for(organization=None) %}
         <a href="{{ url_root }}">{% trans %}Index of all organizations{% endtrans %}</a>
-    {% set extras = request.environ.get('pylons.routes_dict') or request.view_args %}
+    {% set extras = (request.environ.get('pylons.routes_dict') or request.view_args).copy() %}
 
     <select id="option-org" name="org" class="inline js-auto-submit" data-module="autosubmit">
         <option value="{{ url_root }}" {% if value == None %}selected="selected"{% endif %}>-- {{ _('Index of all organizations') }} --</option>
