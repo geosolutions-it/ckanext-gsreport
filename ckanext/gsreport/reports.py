@@ -123,6 +123,11 @@ def report_broken_links(org=None, dataset=None):
         if data['marker'] == BROKEN_LINKS_MARKER if data else False:
             return data
 
+    def get_report_summary(data):
+
+        out = {'total': {},
+              'errors': {}}
+
     def get_report_stats(data, org_name):
         out = {'organization': org_name,
                'total': data['total'],
