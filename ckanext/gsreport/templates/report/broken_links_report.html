@@ -1,4 +1,3 @@
-{% if data.organization %}
 
 <ul>
     <li>{% trans %}Number of datasets checked{% endtrans %}: {{ data.total.datasets }}</li>
@@ -6,7 +5,6 @@
     <li>{% trans %}Number of resources checked{% endtrans %}: {{ data.total.resources }}</li>
     <li>{% trans %}Number of resources failed{% endtrans %}: {{ data.errors.resources }}</li>
 </ul>
-{% endif %}
 <table class="table table-bordered table-condensed tablesorter">
     {% if data.organization == None %}
         <thead>

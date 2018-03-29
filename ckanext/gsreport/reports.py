@@ -125,8 +125,29 @@ def report_broken_links(org=None, dataset=None):
 
     def get_report_summary(data):
 
-        out = {'total': {},
-              'errors': {}}
+        out = {'total': {'resources': 0,
+                         'datasets': 0},
+              'errors': {'resources': 0,
+                         'datasets': 0,
+                         'resources_pct': 0,
+                         'datasets_pct': 0}
+               }
+
+        for row in data:
+            out['total']['resources'] += row['total']['resources']
+            out['total']['datasets'] += row['total']['datasets']
+            out['errors']['resources'] += row['errors']['resources']
+            out['errors']['datasets'] += row['errors']['datasets']
+
+        if out['total']['resources'] > 0:
+            out['errors']['resources_pct'] = out['errors']['resources'] * 100.0/out['total']['resources']
+        else:
+            out['errors']['resources_pct'] = 0.0
+        if out['total']['datasets'] > 0:
+            out['errors']['datasets_pct'] = out['errors']['datasets'] * 100.0/out['total']['datasets']
+        else:
+            out['errors']['datasets_pct'] = 0.0
+        return out
 
     def get_report_stats(data, org_name):
         out = {'organization': org_name,
@@ -205,10 +226,12 @@ def report_broken_links(org=None, dataset=None):
                                  "cached for {}"
                                  .format(BROKEN_LINKS_MARKER))
             table.append(get_report_stats(data, org_name))
-        return {'table': table,
+        out = {'table': table,
                 'organization': None,
                 'marker': BROKEN_LINKS_MARKER,
                 }
+        out.update(get_report_summary(table))
+        return out
 
 def resources_formats(org=None, res_format=None):
     s = model.Session
