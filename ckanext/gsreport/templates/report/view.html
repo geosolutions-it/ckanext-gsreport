@@ -64,7 +64,6 @@
                       {% endfor %}
                     </form>
                   {% endif %}
-
                   {% if are_some_results %}
                     <div class="pull-right">
                         {{ _('Download') }}:
@@ -80,6 +79,7 @@
                       {% snippet report_template, table=data['table'], data=data, report_name=report_name, options=options %}
                     </div>
                   {% endif %}
+
               </div>
           </div>
         {% endblock %}

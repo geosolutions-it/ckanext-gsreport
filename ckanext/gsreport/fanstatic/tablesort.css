@@ -6,6 +6,8 @@ table.tablesorter {
 table.tablesorter th {
 	text-align: left;
 	padding: 5px;
+    vertical-align: top;
+    
     background-color: #eaeaee;
 }
 table.tablesorter td {
