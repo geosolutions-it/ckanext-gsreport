@@ -128,8 +128,14 @@ def report_broken_links(org=None, dataset=None):
                'total': data['total'],
                'errors': data['errors'],
                 }
-        out['errors']['resources_pct'] = data['errors']['resources'] * 1.0/data['total']['resources']
-        out['errors']['datasets_pct'] = data['errors']['datasets'] * 1.0/data['total']['datasets']
+        if data['total']['resources'] > 0:
+            out['errors']['resources_pct'] = data['errors']['resources'] * 1.0/data['total']['resources']
+        else:
+            out['errors']['resources_pct'] = '-'
+        if data['total']['datasets'] > 0:
+            out['errors']['datasets_pct'] = data['errors']['datasets'] * 1.0/data['total']['datasets']
+        else:
+            out['errors']['datasets_pct'] = '-'
         return out
 
     s = model.Session
