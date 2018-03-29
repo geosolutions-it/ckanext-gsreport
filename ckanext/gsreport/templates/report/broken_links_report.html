@@ -25,11 +25,11 @@
                 <td><a href="?org={{ row.organization }}">{{ row.organization }}</a></td>
                 <td>{{ row.total.datasets }}</td>
                 <td>{{ row.errors.datasets }}</td>
-                <td>{{ row.errors.datasets_pct|round(precision=2) }}%</td>
+                <td>{{ row.errors.datasets_pct|round(precision=0)|int }}%</td>
 
                 <td>{{ row.total.resources }}</td>
                 <td>{{ row.errors.resources }}</td>
-                <td>{{ row.errors.resources_pct|round(precision=2) }}%</td>
+                <td>{{ row.errors.resources_pct|round(precision=0)|int }}%</td>
             </tr>
         {% endfor %}
         </tbody>
