@@ -240,7 +240,6 @@ def resources_formats(org=None, res_format=None):
     O = model.Group
 
     if res_format:
-
         q = s.query(O.name,
                     P.title,
                     P.id,
@@ -263,20 +262,32 @@ def resources_formats(org=None, res_format=None):
              .join(P, P.id == R.package_id)\
              .join(O, O.id == P.owner_org)\
              .order_by(O.name, P.title, R.name)
+        
+        format_q = s.query(coalesce(R.format, ''))\
+                    .select_from(R)\
+                    .join(P, P.id == R.package_id)\
+                    .join(O, O.id == P.owner_org)
 
         if res_format != EMPTY_STRING_PLACEHOLDER:
             q = q.filter(and_(P.state == 'active',
                               R.format==res_format))
+
+            format_q = format_q.filter(and_(P.state == 'active',
+                                            R.format==res_format))
+
         else:
             q = q.filter(and_(P.state == 'active',
                               R.format.in_(['', None,])))
 
+            format_q = format_q.filter(and_(P.state == 'active',
+                                            R.format.in_(['', None,])))
+
         if org:
              q = q.filter(O.name==org)
+             format_q = format_q.filter(O.name == org)
 
-        q_count = s.query(func.count(R.format))
-        count = q.count()
-        res_count = q_count.one()[0]
+        res_count = q.count()
+        format_count = format_q.count()
 
         table = [{'organization': {'name': r[0]},
                   'dataset': {'title': r[1],
@@ -307,17 +318,16 @@ def resources_formats(org=None, res_format=None):
              .order_by(desc(func.count(R.format)))
         table = [{'format': r[0], 'count': r[1]} for r in q]
         
-        q_count = s.query(func.count(R.format))
-        count = q.count()
-        res_count = q_count.one()[0]
+        format_count = q.count()
+        res_count = sum([t['count'] for t in table])
         options_hide = True
 
     return {'table': table,
-            'number_of_resources': res_count,
             'organization': org,
             'options_hide': options_hide,
             'res_format': res_format,
-            'number_of_formats': count}
+            'number_of_resources': res_count,
+            'number_of_formats': format_count}
 
 
 def all_reports():
