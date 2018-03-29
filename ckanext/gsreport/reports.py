@@ -131,11 +131,11 @@ def report_broken_links(org=None, dataset=None):
         if data['total']['resources'] > 0:
             out['errors']['resources_pct'] = data['errors']['resources'] * 100.0/data['total']['resources']
         else:
-            out['errors']['resources_pct'] = '-'
+            out['errors']['resources_pct'] = 0.0
         if data['total']['datasets'] > 0:
             out['errors']['datasets_pct'] = data['errors']['datasets'] * 100.0/data['total']['datasets']
         else:
-            out['errors']['datasets_pct'] = '-'
+            out['errors']['datasets_pct'] = 0.0
         return out
 
     s = model.Session
