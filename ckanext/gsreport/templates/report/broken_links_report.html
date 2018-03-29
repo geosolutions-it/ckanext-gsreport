@@ -7,9 +7,8 @@
     <li>{% trans %}Number of resources failed{% endtrans %}: {{ data.errors.resources }}</li>
 </ul>
 {% endif %}
-
 <table class="table table-bordered table-condensed tablesorter">
-    {% if not data.organization == None %}
+    {% if data.organization == None %}
         <thead>
             <tr>
                 <th>{% trans %}Organization{% endtrans %}</th>
