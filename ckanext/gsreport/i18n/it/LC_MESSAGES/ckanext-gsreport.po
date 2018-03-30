@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-30 10:09+0200\n"
+"POT-Creation-Date: 2018-03-30 12:00+0200\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -29,6 +29,15 @@ msgid ""
 "\n"
 " {}"
 msgstr ""
+"** Attenzione: ** L'URL della risorsa non è valido per il servizio OWS, "
+"tuttavia esso\"\n"
+"\"risponde con una risposta HTTP corretta. \\ n\"\n"
+"\"\\ N\"\n"
+"\"** Errore OWS: ** {} \\ n\"\n"
+"\"\\ N\"\n"
+"\"** Dati OWS: ** \\ n\"\n"
+"\"\\ N\"\n"
+"\"{}"
 
 #: ckanext/gsreport/reports.py:336
 msgid ""
@@ -49,12 +58,11 @@ msgstr "Elenca le licenze usate"
 #: ckanext/gsreport/templates/report/broken_links_report.html:3
 #, fuzzy
 msgid "Number of datasets checked"
-msgstr "Numero delle risorse controllate"
+msgstr "Numero di set di dati non riusciti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:4
-#, fuzzy
 msgid "Number of datasets failed"
-msgstr "Numero delle risorse che hanno riportato un fallimento"
+msgstr "Numero di set di dati non riusciti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:5
 msgid "Number of resources checked"
@@ -69,33 +77,31 @@ msgstr "Numero delle risorse che hanno riportato un fallimento"
 #: ckanext/gsreport/templates/report/option_organization.html:9
 #: ckanext/gsreport/templates/report/resources_format_report.html:11
 msgid "Organization"
-msgstr ""
+msgstr "Organizzazione"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:13
-#, fuzzy
 msgid "All Datasets"
-msgstr "Dataset"
+msgstr "Tutti i set di dati"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:14
 msgid "Datasets with broken links"
-msgstr ""
+msgstr "Set di dati con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:15
 msgid "% Datasets with broken links"
-msgstr ""
+msgstr "% Set di dati con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:17
-#, fuzzy
 msgid "All resources"
-msgstr "Risorsa"
+msgstr "Tutte le risorse"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:18
 msgid "Resources with broken links"
-msgstr ""
+msgstr "Risorse con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:19
 msgid "% Broken links"
-msgstr ""
+msgstr "% Link interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:40
 #: ckanext/gsreport/templates/report/resources_format_report.html:12
@@ -104,7 +110,7 @@ msgstr "Dataset"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:41
 msgid "Title"
-msgstr ""
+msgstr "Titolo"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:42
 #: ckanext/gsreport/templates/report/resources_format_report.html:15
@@ -114,15 +120,15 @@ msgstr "Formato"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:43
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:44
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:45
 msgid "Reason"
-msgstr ""
+msgstr "Ragionare"
 
 #: ckanext/gsreport/templates/report/index.html:3
 #: ckanext/gsreport/templates/report/index.html:6
@@ -145,7 +151,7 @@ msgstr "Licenza"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:10
 msgid "code"
-msgstr ""
+msgstr "codice"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:11
 #: ckanext/gsreport/templates/report/resources_format_report.html:45
@@ -163,12 +169,11 @@ msgstr "non specificato"
 #: ckanext/gsreport/templates/report/option_organization.html:13
 #: ckanext/gsreport/templates/report/option_organization.html:17
 msgid "Index of all organizations"
-msgstr ""
+msgstr "Indice di tutte le organizzazioni"
 
 #: ckanext/gsreport/templates/report/option_res_format.html:2
-#, fuzzy
 msgid "Resource format"
-msgstr "Risorsa"
+msgstr "Formato di risorsa"
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:3
 msgid "Number of formats used"
@@ -184,29 +189,29 @@ msgstr "Risorsa"
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:14
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:16
 msgid "Created"
-msgstr ""
+msgstr "Creato"
 
 #: ckanext/gsreport/templates/report/view.html:50
 msgid "Generated"
-msgstr ""
+msgstr "Generato"
 
 #: ckanext/gsreport/templates/report/view.html:54
 msgid "Options"
-msgstr ""
+msgstr "Opzioni"
 
 #: ckanext/gsreport/templates/report/view.html:69
 msgid "Download"
-msgstr ""
+msgstr "Scaricare"
 
 #: ckanext/gsreport/templates/report/view.html:74
 msgid "Results"
-msgstr ""
+msgstr "Risultati"
 
 #: ckanext/gsreport/templates/report/view.html:76
 msgid "No results found."
-msgstr ""
+msgstr "Nessun risultato trovato"
 
