@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-29 15:19+0200\n"
+"POT-Creation-Date: 2018-03-30 10:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,89 +30,89 @@ msgid ""
 " {}"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:303
+#: ckanext/gsreport/reports.py:336
 msgid "List datasets with resources that are non-existent or return error response"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:312
+#: ckanext/gsreport/reports.py:345
 msgid "List formats used in resources"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:321
+#: ckanext/gsreport/reports.py:354
 msgid "List of licenses used"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:4
+#: ckanext/gsreport/templates/report/broken_links_report.html:3
 msgid "Number of datasets checked"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:5
+#: ckanext/gsreport/templates/report/broken_links_report.html:4
 msgid "Number of datasets failed"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:6
+#: ckanext/gsreport/templates/report/broken_links_report.html:5
 msgid "Number of resources checked"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:7
+#: ckanext/gsreport/templates/report/broken_links_report.html:6
 msgid "Number of resources failed"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:14
+#: ckanext/gsreport/templates/report/broken_links_report.html:12
 #: ckanext/gsreport/templates/report/option_org.html:9
 #: ckanext/gsreport/templates/report/option_organization.html:9
 #: ckanext/gsreport/templates/report/resources_format_report.html:11
 msgid "Organization"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:15
+#: ckanext/gsreport/templates/report/broken_links_report.html:13
 msgid "All Datasets"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:16
+#: ckanext/gsreport/templates/report/broken_links_report.html:14
 msgid "Datasets with broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:17
+#: ckanext/gsreport/templates/report/broken_links_report.html:15
 msgid "% Datasets with broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:19
+#: ckanext/gsreport/templates/report/broken_links_report.html:17
 msgid "All resources"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:20
+#: ckanext/gsreport/templates/report/broken_links_report.html:18
 msgid "Resources with broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:21
+#: ckanext/gsreport/templates/report/broken_links_report.html:19
 msgid "% Broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:42
+#: ckanext/gsreport/templates/report/broken_links_report.html:40
 #: ckanext/gsreport/templates/report/resources_format_report.html:12
 msgid "Dataset"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:43
+#: ckanext/gsreport/templates/report/broken_links_report.html:41
 msgid "Title"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:44
+#: ckanext/gsreport/templates/report/broken_links_report.html:42
 #: ckanext/gsreport/templates/report/resources_format_report.html:15
 #: ckanext/gsreport/templates/report/resources_format_report.html:44
 msgid "Format"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:45
+#: ckanext/gsreport/templates/report/broken_links_report.html:43
 msgid "URL"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:46
+#: ckanext/gsreport/templates/report/broken_links_report.html:44
 msgid "Status"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:47
+#: ckanext/gsreport/templates/report/broken_links_report.html:45
 msgid "Reason"
 msgstr ""
 

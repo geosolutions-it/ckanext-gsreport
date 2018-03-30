@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-29 15:19+0200\n"
+"POT-Creation-Date: 2018-03-30 10:09+0200\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid ""
 " {}"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:303
+#: ckanext/gsreport/reports.py:336
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
@@ -38,89 +38,89 @@ msgstr ""
 "Elenca i set di dati con risorse inesistenti o restituisce il messaggio "
 "di errore"
 
-#: ckanext/gsreport/reports.py:312
+#: ckanext/gsreport/reports.py:345
 msgid "List formats used in resources"
 msgstr "Elenca i formati usati nelle risorse"
 
-#: ckanext/gsreport/reports.py:321
+#: ckanext/gsreport/reports.py:354
 msgid "List of licenses used"
 msgstr "Elenca le licenze usate"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:4
+#: ckanext/gsreport/templates/report/broken_links_report.html:3
 #, fuzzy
 msgid "Number of datasets checked"
 msgstr "Numero delle risorse controllate"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:5
+#: ckanext/gsreport/templates/report/broken_links_report.html:4
 #, fuzzy
 msgid "Number of datasets failed"
 msgstr "Numero delle risorse che hanno riportato un fallimento"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:6
+#: ckanext/gsreport/templates/report/broken_links_report.html:5
 msgid "Number of resources checked"
 msgstr "Numero delle risorse controllate"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:7
+#: ckanext/gsreport/templates/report/broken_links_report.html:6
 msgid "Number of resources failed"
 msgstr "Numero delle risorse che hanno riportato un fallimento"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:14
+#: ckanext/gsreport/templates/report/broken_links_report.html:12
 #: ckanext/gsreport/templates/report/option_org.html:9
 #: ckanext/gsreport/templates/report/option_organization.html:9
 #: ckanext/gsreport/templates/report/resources_format_report.html:11
 msgid "Organization"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:15
+#: ckanext/gsreport/templates/report/broken_links_report.html:13
 #, fuzzy
 msgid "All Datasets"
 msgstr "Dataset"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:16
+#: ckanext/gsreport/templates/report/broken_links_report.html:14
 msgid "Datasets with broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:17
+#: ckanext/gsreport/templates/report/broken_links_report.html:15
 msgid "% Datasets with broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:19
+#: ckanext/gsreport/templates/report/broken_links_report.html:17
 #, fuzzy
 msgid "All resources"
 msgstr "Risorsa"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:20
+#: ckanext/gsreport/templates/report/broken_links_report.html:18
 msgid "Resources with broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:21
+#: ckanext/gsreport/templates/report/broken_links_report.html:19
 msgid "% Broken links"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:42
+#: ckanext/gsreport/templates/report/broken_links_report.html:40
 #: ckanext/gsreport/templates/report/resources_format_report.html:12
 msgid "Dataset"
 msgstr "Dataset"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:43
+#: ckanext/gsreport/templates/report/broken_links_report.html:41
 msgid "Title"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:44
+#: ckanext/gsreport/templates/report/broken_links_report.html:42
 #: ckanext/gsreport/templates/report/resources_format_report.html:15
 #: ckanext/gsreport/templates/report/resources_format_report.html:44
 msgid "Format"
 msgstr "Formato"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:45
+#: ckanext/gsreport/templates/report/broken_links_report.html:43
 msgid "URL"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:46
+#: ckanext/gsreport/templates/report/broken_links_report.html:44
 msgid "Status"
 msgstr ""
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:47
+#: ckanext/gsreport/templates/report/broken_links_report.html:45
 msgid "Reason"
 msgstr ""
 
@@ -209,7 +209,4 @@ msgstr ""
 #: ckanext/gsreport/templates/report/view.html:76
 msgid "No results found."
 msgstr ""
-
-#~ msgid "Broken links"
-#~ msgstr ""
 
