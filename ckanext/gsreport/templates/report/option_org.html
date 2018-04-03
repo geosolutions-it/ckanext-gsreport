@@ -7,7 +7,7 @@ default - Default value for this option
 
 <span class="form-select control-group control-org">
     <label for="option-org"> {{ _('Organization') }} </label>
-    {% set url_root = h.report__relative_url_for(organization=None) %}
+    {% set url_root = h.report__relative_url_for(res_format=None, license_id=None, org=None) %}
         <a href="{{ url_root }}">{% trans %}Index of all organizations{% endtrans %}</a>
     {% set extras = (request.environ.get('pylons.routes_dict') or request.view_args).copy() %}
 
