@@ -29,6 +29,7 @@ class StatusReportPlugin(plugins.SingletonPlugin):
     plugins.implements(IReport)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IPackageController, inherit=True)
 
     # ------------- IConfigurer ---------------#
@@ -70,3 +71,7 @@ class StatusReportPlugin(plugins.SingletonPlugin):
         ReportPlugin.get_auth_functions = fake_get_auth_functions
         
         return out
+
+    def get_helpers(self):
+        from ckanext.gsreport import helpers as gsh
+        return {'gsreport_facets_hide_item': gsh.gsreport_facets_hide_item}
