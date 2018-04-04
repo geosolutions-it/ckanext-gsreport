@@ -1,45 +1,63 @@
-<ul>
-    <li>{% trans %}Number of resources checked{% endtrans %}: {{ data.number_of_resources }}</li>
-    <li>{% trans %}Number of resources failed{% endtrans %}: {{ data.number_of_errors }}</li>
-</ul>
 
+<ul>
+    <li>{% trans %}Number of datasets checked{% endtrans %}: {{ data.total.datasets }}</li>
+    <li>{% trans %}Number of datasets failed{% endtrans %}: {{ data.errors.datasets }}</li>
+    <li>{% trans %}Number of resources checked{% endtrans %}: {{ data.total.resources }}</li>
+    <li>{% trans %}Number of resources failed{% endtrans %}: {{ data.errors.resources }}</li>
+</ul>
 <table class="table table-bordered table-condensed tablesorter">
+    {% if data.organization == None %}
+        <thead>
+            <tr>
+                <th>{% trans %}Organization{% endtrans %}</th>
+                <th>{% trans %}All Datasets{% endtrans %}</th>
+                <th>{% trans %}Datasets with broken links{% endtrans %}</th>
+                <th>{% trans %}% Datasets with broken links{% endtrans %}</th>
+
+                <th>{% trans %}All resources{% endtrans %}</th>
+                <th>{% trans %}Resources with broken links{% endtrans %}</th>
+                <th>{% trans %}% Broken links{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in table %}
+            <tr>
+                <td><a href="?org={{ row.organization }}">{{ row.organization }}</a></td>
+                <td>{{ row.total.datasets }}</td>
+                <td>{{ row.errors.datasets }}</td>
+                <td>{{ row.errors.datasets_pct|round(precision=0)|int }}%</td>
+
+                <td>{{ row.total.resources }}</td>
+                <td>{{ row.errors.resources }}</td>
+                <td>{{ row.errors.resources_pct|round(precision=0)|int }}%</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    {% else %}
     <thead>
         <tr>
-            <th colspan="4">{% trans %}Resource{% endtrans %}</th>
-        </tr>
-        <tr>
-            <th colspan="4">{% trans %}Dataset{% endtrans %}</th>
-        </tr>
-        <tr>
-            <th colspan="2">{% trans %}Checked at{% endtrans %}</th>
-            <th>{% trans %}Type of error{% endtrans %}</th>
-            <th>{% trans %}Response code{% endtrans %}</th>
-        </tr>
-        <tr>
-            <th colspan="4">{% trans %}Response data{% endtrans %}</th>
+            <th>{% trans %}Dataset{% endtrans %}</th>
+            <th>{% trans %}Title{% endtrans %}</th>
+            <th>{% trans %}Format{% endtrans %}</th>
+            <th>{% trans %}URL{% endtrans %}</th>
+            <th>{% trans %}Status{% endtrans %}</th>
+            <th>{% trans %}Reason{% endtrans %}</th>
         </tr>
     </thead>
     <tbody>
-        {% for row in table %}
-            <tr>
-                <td colspan="4"><strong>{% trans %}Resource{% endtrans %}:</strong> [{{ row.resource_format }}] <a href="{{ row.url }}">{{ row.resource_name or row.url}}</a></td>
-            </tr>
-            <tr>
-                <td colspan="4"><strong>{% trans %}Dataset{% endtrans %}:</strong> <a href="{{ row.dataset_url }}">{{ row.dataset_title }}</a></td>
-            </tr>
-            <tr>
-                <td colspan="2">{{ row.checked_at }}</td>
-                <td>{{ row.error}}</td>
-                <td>{{ row.code }}</td>
-            </tr>
-            <tr>
-                <td colspan="4">{{ h.render_markdown(row.msg) }}</td>
-            </tr>
-            <tr>
-                <td colspan="4"> </td>
-            </tr>
-                
-        {% endfor %}
+            {% for row in table %}
+                <tr>
+                    <td><a href="{{ row.dataset_url }}">{{ row.dataset_title }}</a></td>
+                    <td>{{ row.resource_name|truncate(50) }}</td>
+                    <td>{{ row.resource_format }}</td>
+                    <td><a href="{{ row.res_url or row.resource_url }}">{{ row.res_url or row.resource_url}}</a></td>
+                    <td>{{ row.error }}</td>
+                    <td>{{ h.render_markdown(row.msg) }}</td>
+                </tr>
+            {% endfor %}
     </tbody>
+
+    {% endif %}
+
 </table>

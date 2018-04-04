@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-16 12:24+0100\n"
+"POT-Creation-Date: 2018-03-30 12:04+0200\n"
 "PO-Revision-Date: 2018-02-12 13:25+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: ckanext/gsreport/checkers.py:136
+#: ckanext/gsreport/checkers.py:137
 msgid ""
 " ** Warning:** Resource's URL is invalid for OWS service, however it "
 "responds with correct HTTP response.\n"
@@ -29,8 +29,11 @@ msgid ""
 "\n"
 " {}"
 msgstr ""
+"** Warnung: ** URL der Ressource ist ungültig für den OWS-Dienst, "
+"jedochantwortet mit korrekter HTTP-Antwort. \\ n\\ n** OWS-Fehler: ** {} "
+"\\ n\\ n** OWS-Daten: ** \\ n\\ n{}"
 
-#: ckanext/gsreport/reports.py:114
+#: ckanext/gsreport/reports.py:336
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
@@ -38,52 +41,92 @@ msgstr ""
 "Listet Datensätze mit Ressourcen auf, die nicht vorhanden sind, oder gibt"
 " eine Fehlerantwort zurück"
 
-#: ckanext/gsreport/reports.py:123
+#: ckanext/gsreport/reports.py:345
 msgid "List formats used in resources"
 msgstr "Listenformate die in Ressourcen verwendet werden"
 
-#: ckanext/gsreport/reports.py:132
+#: ckanext/gsreport/reports.py:354
 msgid "List of licenses used"
 msgstr "Liste der verwendeten Lizenzen"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:2
+#: ckanext/gsreport/templates/report/broken_links_report.html:3
+msgid "Number of datasets checked"
+msgstr "Anzahl der geprüften Datensätze"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:4
+msgid "Number of datasets failed"
+msgstr "Anzahl der Datensätze fehlgeschlagen"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:5
 msgid "Number of resources checked"
 msgstr "Anzahl der geprüften Ressourcen"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:3
+#: ckanext/gsreport/templates/report/broken_links_report.html:6
 msgid "Number of resources failed"
 msgstr "Anzahl der Ressourcen fehlgeschlagen"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:9
-#: ckanext/gsreport/templates/report/broken_links_report.html:26
-msgid "Resource"
-msgstr "Ressource"
-
 #: ckanext/gsreport/templates/report/broken_links_report.html:12
-#: ckanext/gsreport/templates/report/broken_links_report.html:29
+#: ckanext/gsreport/templates/report/option_org.html:9
+#: ckanext/gsreport/templates/report/option_organization.html:9
+#: ckanext/gsreport/templates/report/resources_format_report.html:11
+msgid "Organization"
+msgstr "Organisation"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:13
+msgid "All Datasets"
+msgstr "Alle Datensätze"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:14
+msgid "Datasets with broken links"
+msgstr "Datensätze mit defekten Links"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:15
+msgid "% Datasets with broken links"
+msgstr "% Datensätze mit defekten Links"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:17
+msgid "All resources"
+msgstr "Alle Ressourcen"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:18
+msgid "Resources with broken links"
+msgstr "Resources with broken links"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:19
+msgid "% Broken links"
+msgstr "% Kaputte Links"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:40
+#: ckanext/gsreport/templates/report/resources_format_report.html:12
 msgid "Dataset"
 msgstr "Datensatz"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:15
-msgid "Checked at"
-msgstr "Überprüft bei"
+#: ckanext/gsreport/templates/report/broken_links_report.html:41
+msgid "Title"
+msgstr "Titel"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:16
-msgid "Type of error"
-msgstr "Art des Fehlers"
+#: ckanext/gsreport/templates/report/broken_links_report.html:42
+#: ckanext/gsreport/templates/report/resources_format_report.html:15
+#: ckanext/gsreport/templates/report/resources_format_report.html:44
+msgid "Format"
+msgstr "Format"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:17
-msgid "Response code"
-msgstr "Antwortcode"
+#: ckanext/gsreport/templates/report/broken_links_report.html:43
+msgid "URL"
+msgstr "URL"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:20
-msgid "Response data"
-msgstr "Antwortdaten"
+#: ckanext/gsreport/templates/report/broken_links_report.html:44
+msgid "Status"
+msgstr "Status"
+
+#: ckanext/gsreport/templates/report/broken_links_report.html:45
+msgid "Reason"
+msgstr "Grund"
 
 #: ckanext/gsreport/templates/report/index.html:3
 #: ckanext/gsreport/templates/report/index.html:6
 #: ckanext/gsreport/templates/report/view.html:3
-#: ckanext/gsreport/templates/report/view.html:6
+#: ckanext/gsreport/templates/report/view.html:30
 msgid "Reports"
 msgstr "Berichte"
 
@@ -95,73 +138,73 @@ msgstr "Zeige Bericht"
 msgid "Number of licenses used"
 msgstr "Anzahl der verwendeten Lizenzen"
 
-#: ckanext/gsreport/templates/report/licenses_report.html:8
+#: ckanext/gsreport/templates/report/licenses_report.html:9
 msgid "License"
 msgstr "Lizenz"
 
-#: ckanext/gsreport/templates/report/licenses_report.html:9
-#: ckanext/gsreport/templates/report/resources_format_report.html:10
+#: ckanext/gsreport/templates/report/licenses_report.html:10
+msgid "code"
+msgstr "code"
+
+#: ckanext/gsreport/templates/report/licenses_report.html:11
+#: ckanext/gsreport/templates/report/resources_format_report.html:45
 msgid "Count"
 msgstr "Anzahl"
 
-#: ckanext/gsreport/templates/report/licenses_report.html:15
-#: ckanext/gsreport/templates/report/resources_format_report.html:16
+#: ckanext/gsreport/templates/report/licenses_report.html:17
+#: ckanext/gsreport/templates/report/licenses_report.html:18
+#: ckanext/gsreport/templates/report/resources_format_report.html:52
 msgid "not specified"
 msgstr "keine Angabe"
 
-#: ckanext/gsreport/templates/report/option_org.html:8
-#: ckanext/gsreport/templates/report/option_organization.html:9
-msgid "Organization"
-msgstr ""
-
 #: ckanext/gsreport/templates/report/option_org.html:11
-#: ckanext/gsreport/templates/report/option_org.html:20
+#: ckanext/gsreport/templates/report/option_org.html:15
 #: ckanext/gsreport/templates/report/option_organization.html:13
 #: ckanext/gsreport/templates/report/option_organization.html:17
 msgid "Index of all organizations"
-msgstr ""
+msgstr "Index aller Organisationen"
 
-#: ckanext/gsreport/templates/report/resources_format_report.html:2
+#: ckanext/gsreport/templates/report/option_res_format.html:2
+msgid "Resource format"
+msgstr "Ressourcenformat"
+
+#: ckanext/gsreport/templates/report/resources_format_report.html:3
 msgid "Number of formats used"
 msgstr "Anzahl der verwendeten Formate"
 
-#: ckanext/gsreport/templates/report/resources_format_report.html:3
+#: ckanext/gsreport/templates/report/resources_format_report.html:5
 msgid "Number of resources"
 msgstr "Anzahl der Ressourcen"
 
-#: ckanext/gsreport/templates/report/resources_format_report.html:9
-msgid "Format"
-msgstr "Format"
+#: ckanext/gsreport/templates/report/resources_format_report.html:13
+msgid "Resource"
+msgstr "Ressource"
 
-#: ckanext/gsreport/templates/report/view.html:19
+#: ckanext/gsreport/templates/report/resources_format_report.html:14
+msgid "Description"
+msgstr "Beschreibung"
+
+#: ckanext/gsreport/templates/report/resources_format_report.html:16
+msgid "Created"
+msgstr "Erstellt"
+
+#: ckanext/gsreport/templates/report/view.html:50
 msgid "Generated"
-msgstr ""
+msgstr "Generiert"
 
-#: ckanext/gsreport/templates/report/view.html:23
+#: ckanext/gsreport/templates/report/view.html:54
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
-#: ckanext/gsreport/templates/report/view.html:39
+#: ckanext/gsreport/templates/report/view.html:69
 msgid "Download"
-msgstr ""
+msgstr "Nachladen"
 
-#: ckanext/gsreport/templates/report/view.html:44
+#: ckanext/gsreport/templates/report/view.html:74
 msgid "Results"
-msgstr ""
+msgstr "Ergebnisse"
 
-#: ckanext/gsreport/templates/report/view.html:46
+#: ckanext/gsreport/templates/report/view.html:76
 msgid "No results found."
-msgstr ""
-
-#~ msgid "Refresh report"
-#~ msgstr ""
-
-#~ msgid "Refresh"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "As a system administrator you are "
-#~ "able to refresh this report on "
-#~ "demand by clicking the 'Refresh' button."
-#~ msgstr ""
+msgstr "keine Ergebnisse gefunden"
 

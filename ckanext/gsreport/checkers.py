@@ -86,6 +86,7 @@ def check_url(res):
            'dataset_title': res.package.title,
            'dataset_id': res.package_id,
            'dataset_url': '{}/dataset/{}'.format(SITE_URL, res.package.name),
+           'organization_id': res.package.owner_org,
            'checked_at': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
            'headers': {},
            'data': None,

@@ -4,12 +4,11 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
 from ckanext.report.interfaces import IReport
-from ckanext.gsreport.reports import all_reports
+from ckanext.gsreport.reports import all_reports, EMPTY_STRING_PLACEHOLDER
 
 log = logging.getLogger(__name__)
 
 
-EMPTY_STRING_PLACEHOLDER='not-specified'
 
 def check_if_super(context, data_dict=None):
     out = {'success': False,
@@ -30,6 +29,7 @@ class StatusReportPlugin(plugins.SingletonPlugin):
     plugins.implements(IReport)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IPackageController, inherit=True)
 
     # ------------- IConfigurer ---------------#
@@ -47,8 +47,11 @@ class StatusReportPlugin(plugins.SingletonPlugin):
     def before_index(self, dataset_dict):
         # replace empty strings in res_format and license_id to EMPTY_STRING_PLACEHOLDER
         res_formats = dataset_dict.get('res_format') or []
+        res_format = list(set([r for r in res_formats if r]))
         res_formats = list(set([r or EMPTY_STRING_PLACEHOLDER for r in res_formats]))
-        dataset_dict['res_format'] = res_formats
+
+        dataset_dict['res_format'] = res_format
+        #dataset_dict['res_formats'] = res_format
         dataset_dict['license_id'] = dataset_dict.get('license_id') or EMPTY_STRING_PLACEHOLDER
         return dataset_dict
 
@@ -69,3 +72,6 @@ class StatusReportPlugin(plugins.SingletonPlugin):
         
         return out
 
+    def get_helpers(self):
+        from ckanext.gsreport import helpers as gsh
+        return {'gsreport_facets_hide_item': gsh.gsreport_facets_hide_item}

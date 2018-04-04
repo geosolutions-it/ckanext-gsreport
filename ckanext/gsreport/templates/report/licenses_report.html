@@ -1,17 +1,20 @@
 <ul>
-    <li>{% trans %}Number of licenses  used{% endtrans %}: {{ data.number_of_formats }}</li>
+    <li>{% trans %}Number of licenses  used{% endtrans %}: {{ data.number_of_licenses }}</li>
 </ul>
 
 <table class="table table-bordered table-condensed tablesorter" data-module="tablesorter">
     <thead>
         <tr>
+            
             <th>{% trans %}License{% endtrans %}</th>
+            <th>{% trans %}code{% endtrans %}</th>
             <th>{% trans %}Count{% endtrans %}</th>
         </tr>
     </thead>
     <tbody>
         {% for row in table %}
             <tr>
+                <td><a href="{{ site_url }}/dataset?license_id={{row.license or 'not-specified'}}">{{ row.title or _('not specified') }}</a></td>
                 <td><a href="{{ site_url }}/dataset?license_id={{row.license or 'not-specified'}}">{{ row.license or _('not specified') }}</a></td>
                 <td>{{ row.count }}</td>
             </tr>
