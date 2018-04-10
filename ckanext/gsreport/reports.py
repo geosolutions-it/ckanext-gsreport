@@ -63,6 +63,7 @@ def _dict_to_row(val_in):
 def row_dict_norm(val_in):
     return dict(_dict_to_row(val_in))
 
+
 def _get_organizations():
     call = t.get_action('organization_list')
     orgs = call(DEFAULT_ORG_CTX, {})
@@ -260,6 +261,7 @@ def report_broken_links(org=None, dataset=None):
                 }
         out.update(get_report_summary(table))
         return out
+
 
 def resources_formats(org=None, res_format=None):
     s = model.Session
