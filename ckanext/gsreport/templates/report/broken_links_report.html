@@ -1,9 +1,9 @@
 
 <ul>
-    <li>{% trans %}Number of datasets checked{% endtrans %}: {{ data.total.datasets }}</li>
-    <li>{% trans %}Number of datasets failed{% endtrans %}: {{ data.errors.datasets }}</li>
-    <li>{% trans %}Number of resources checked{% endtrans %}: {{ data.total.resources }}</li>
-    <li>{% trans %}Number of resources failed{% endtrans %}: {{ data.errors.resources }}</li>
+    <li>{% trans %}Number of datasets checked{% endtrans %}: {{ data['total.datasets'] }}</li>
+    <li>{% trans %}Number of datasets failed{% endtrans %}: {{ data['errors.datasets'] }}</li>
+    <li>{% trans %}Number of resources checked{% endtrans %}: {{ data['total.resources'] }}</li>
+    <li>{% trans %}Number of resources failed{% endtrans %}: {{ data['errors.resources'] }}</li>
 </ul>
 <table class="table table-bordered table-condensed tablesorter">
     {% if data.organization == None %}
@@ -22,14 +22,14 @@
         <tbody>
         {% for row in table %}
             <tr>
-                <td><a href="?org={{ row.organization }}">{{ row.organization }}</a></td>
-                <td>{{ row.total.datasets }}</td>
-                <td>{{ row.errors.datasets }}</td>
-                <td>{{ row.errors.datasets_pct|round(precision=0)|int }}%</td>
+                <td><a href="?org={{ row['organization'] }}">{{ row['organization'] }}</a></td>
+                <td>{{ row['total.datasets'] }}</td>
+                <td>{{ row['errors.datasets'] }}</td>
+                <td>{{ row['errors.datasets_pct']|round(precision=0)|int }}%</td>
 
-                <td>{{ row.total.resources }}</td>
-                <td>{{ row.errors.resources }}</td>
-                <td>{{ row.errors.resources_pct|round(precision=0)|int }}%</td>
+                <td>{{ row['total.resources'] }}</td>
+                <td>{{ row['errors.resources'] }}</td>
+                <td>{{ row['errors.resources_pct']|round(precision=0)|int }}%</td>
             </tr>
         {% endfor %}
         </tbody>

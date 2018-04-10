@@ -19,22 +19,22 @@
     <tbody>
         {% for row in table %}
             <tr>
-                <td>{{ row.organization.name }}</td>
-                <td><a href="{{ h.url_for('dataset_read', id=row.dataset.id) }}">{{ row.dataset.title }}
-                {% if row.dataset.private %}
+                <td>{{ row['organization.name'] }}</td>
+                <td><a href="{{ h.url_for('dataset_read', id=row['dataset.id']) }}">{{ row['dataset.title'] }}
+                {% if row['dataset.private'] %}
                     <span class="icon-lock" title="private"></span>
                 {% endif %}
                 </a></td>
-                <td><a href="{{ h.url_for(controller='package', action='resource_read', id=row.dataset.id, resource_id=row.resource.id) }}">
-                    {% if row.resource.title %}
-                        {{ row.resource.title }}<br/>
+                <td><a href="{{ h.url_for(controller='package', action='resource_read', id=row['dataset.id'], resource_id=row['resource.id']) }}">
+                    {% if row['resource.title'] %}
+                        {{ row['resource.title'] }}<br/>
                     {% endif %}
-                        {{ row.resource.url }}
+                        {{ row['resource.url'] }}
                     </a>
                 </td>
-                <td>{{ row.resource.description|truncate(50) }}</td>
-                <td>{{ row.resource.format }}</td>
-                <td>{{ row.resource.created }}</td>
+                <td>{{ row['resource.description']|truncate(50) }}</td>
+                <td>{{ row['resource.format'] }}</td>
+                <td>{{ row['resource.created'] }}</td>
             <tr>
         {% endfor %}
     </tbody>
