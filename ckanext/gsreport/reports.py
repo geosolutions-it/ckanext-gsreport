@@ -207,7 +207,6 @@ def report_broken_links(org=None, dataset=None):
             q = q.filter(or_(D.name == dataset,
                              D.id == dataset,
                              D.title == dataset))
-        q = q.limit(100)
         table = []
         count = q.count()
         log. info("Checking broken links for %s items", count)
