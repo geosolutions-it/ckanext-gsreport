@@ -37,6 +37,32 @@ def dformat(val):
         return val.strftime(DATE_FORMAT)
 
 
+def _dict_to_row(val_in):
+    """
+    Translates nested dictionaries into 
+      key1.subkey2, value
+
+      list
+    """
+    out = []
+
+    # keep order
+    keys = sorted(val_in.keys())
+    for k in keys:
+        v = val_in[k]
+        if not isinstance(v, dict):
+            out.append((k, v,))
+        else:
+            sub_out = _dict_to_row(v)
+            for item in sub_out:
+                out.append(('{}.{}'.format(k, item[0]),
+                            item[1],))
+    return out
+
+
+def row_dict_norm(val_in):
+    return dict(_dict_to_row(val_in))
+
 def _get_organizations():
     call = t.get_action('organization_list')
     orgs = call(DEFAULT_ORG_CTX, {})
@@ -125,43 +151,43 @@ def report_broken_links(org=None, dataset=None):
 
     def get_report_summary(data):
 
-        out = {'total': {'resources': 0,
-                         'datasets': 0},
-              'errors': {'resources': 0,
-                         'datasets': 0,
-                         'resources_pct': 0,
-                         'datasets_pct': 0}
+        out = {'total.resources': 0,
+               'total.datasets': 0,
+               'errors.resources': 0,
+               'errors.datasets': 0,
+               'errors.resources_pct': 0,
+               'errors.datasets_pct': 0
                }
 
         for row in data:
-            out['total']['resources'] += row['total']['resources']
-            out['total']['datasets'] += row['total']['datasets']
-            out['errors']['resources'] += row['errors']['resources']
-            out['errors']['datasets'] += row['errors']['datasets']
+            out['total.resources'] += row['total.resources']
+            out['total.datasets'] += row['total.datasets']
+            out['errors.resources'] += row['errors.resources']
+            out['errors.datasets'] += row['errors.datasets']
 
-        if out['total']['resources'] > 0:
-            out['errors']['resources_pct'] = out['errors']['resources'] * 100.0/out['total']['resources']
+        if out['total.resources'] > 0:
+            out['errors.resources_pct'] = out['errors.resources'] * 100.0/out['total.resources']
         else:
-            out['errors']['resources_pct'] = 0.0
-        if out['total']['datasets'] > 0:
-            out['errors']['datasets_pct'] = out['errors']['datasets'] * 100.0/out['total']['datasets']
+            out['errors.resources_pct'] = 0.0
+        if out['total.datasets'] > 0:
+            out['errors.datasets_pct'] = out['errors.datasets'] * 100.0/out['total.datasets']
         else:
-            out['errors']['datasets_pct'] = 0.0
+            out['errors.datasets_pct'] = 0.0
         return out
 
     def get_report_stats(data, org_name):
-        out = {'organization': org_name,
-               'total': data['total'],
-               'errors': data['errors'],
-                }
-        if data['total']['resources'] > 0:
-            out['errors']['resources_pct'] = data['errors']['resources'] * 100.0/data['total']['resources']
+        out = {'organization': org_name}
+        out.update(dict(((k,v,) for k,v in data.items() if k.startswith('total.'))))
+        out.update(dict(((k,v,) for k,v in data.items() if k.startswith('errors.'))))
+
+        if data['total.resources'] > 0:
+            out['errors.resources_pct'] = data['errors.resources'] * 100.0/data['total.resources']
         else:
-            out['errors']['resources_pct'] = 0.0
-        if data['total']['datasets'] > 0:
-            out['errors']['datasets_pct'] = data['errors']['datasets'] * 100.0/data['total']['datasets']
+            out['errors.resources_pct'] = 0.0
+        if data['total.datasets'] > 0:
+            out['errors.datasets_pct'] = data['errors.datasets'] * 100.0/data['total.datasets']
         else:
-            out['errors']['datasets_pct'] = 0.0
+            out['errors.datasets_pct'] = 0.0
         return out
 
     s = model.Session
@@ -201,17 +227,17 @@ def report_broken_links(org=None, dataset=None):
         for res in q:
             out = check_url(res)
             if out:
-                table.append(out)
+                table.append(row_dict_norm(out))
                 derr.add(out['dataset_id'])
 
         return {'table': table,
                 'organization': org,
                 'dataset': dataset,
                 'marker': BROKEN_LINKS_MARKER,
-                'total': {'datasets': dcount,
-                          'resources': count},
-                'errors': {'datasets': len(derr),
-                           'resources': len(table)}
+                'total.datasets': dcount,
+                'total.resources': count,
+                'errors.datasets': len(derr),
+                'errors.resources': len(table),
                 }
     else:
         table = []
@@ -225,7 +251,9 @@ def report_broken_links(org=None, dataset=None):
                 raise ValueError("No report previously "
                                  "cached for {}"
                                  .format(BROKEN_LINKS_MARKER))
-            table.append(get_report_stats(data, org_name))
+            
+            row_stats = get_report_stats(data, org_name)
+            table.append(row_dict_norm(row_stats))
         out = {'table': table,
                 'organization': None,
                 'marker': BROKEN_LINKS_MARKER,
@@ -289,7 +317,8 @@ def resources_formats(org=None, res_format=None):
         res_count = q.count()
         format_count = format_q.count()
 
-        table = [{'organization': {'name': r[0]},
+        table = [row_dict_norm(
+                 {'organization': {'name': r[0]},
                   'dataset': {'title': r[1],
                               'id': r[2],
                               'name': r[3],
@@ -306,7 +335,7 @@ def resources_formats(org=None, res_format=None):
                                'id': r[13],
                                'state': r[14],
                               }
-                    } 
+                    })
                   for r in q]
         options_hide = False
     else:
