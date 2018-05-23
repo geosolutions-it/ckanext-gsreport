@@ -16,7 +16,7 @@ default - Default value for this option
         {% if offer_organization_index %}
           <option value="{{ url_root }}" {% if value == None %}selected="selected"{% endif %}>-- {{ _('Index of all organizations') }} --</option>
         {% endif %}
-        {% for org_name, org_title in h.report__organization_list() %}
+        {% for org_name, org_title in h.gsreport_get_organizations() %}
             <option value="{{ url_root }}/{{ org_name }}" {% if value == org_name %}selected="selected" {% endif %}> {{org_title}} </option>
         {% endfor %}
     </select>

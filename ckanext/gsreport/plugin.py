@@ -1,6 +1,7 @@
 import logging
 
 import ckan.plugins as plugins
+from ckan.lib.plugins import DefaultTranslation
 import ckan.plugins.toolkit as toolkit
 
 from ckanext.report.interfaces import IReport
@@ -25,8 +26,9 @@ def check_if_super(context, data_dict=None):
 
 
 
-class StatusReportPlugin(plugins.SingletonPlugin):
+class StatusReportPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(IReport)
+    plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.ITemplateHelpers)
@@ -74,4 +76,15 @@ class StatusReportPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
         from ckanext.gsreport import helpers as gsh
-        return {'gsreport_facets_hide_item': gsh.gsreport_facets_hide_item}
+        return {'gsreport_facets_hide_item': gsh.facets_hide_item,
+                'gsreport_get_organizations': gsh.get_organizations,
+               }
+
+
+    # ------------- ITranslation --------------------- #
+    def i18n_domain(self):
+        '''Change the gettext domain handled by this plugin
+        This implementation assumes the gettext domain is
+        ckanext-{extension name}, hence your pot, po and mo files should be
+        named ckanext-{extension name}.mo'''
+        return 'ckanext-{name}'.format(name='gsreport')

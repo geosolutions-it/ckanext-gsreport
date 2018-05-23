@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-30 12:04+0200\n"
+"POT-Creation-Date: 2018-05-22 18:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,15 +30,15 @@ msgid ""
 " {}"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:336
+#: ckanext/gsreport/reports.py:365
 msgid "List datasets with resources that are non-existent or return error response"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:345
+#: ckanext/gsreport/reports.py:374
 msgid "List formats used in resources"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:354
+#: ckanext/gsreport/reports.py:383
 msgid "List of licenses used"
 msgstr ""
 
@@ -199,5 +199,17 @@ msgstr ""
 
 #: ckanext/gsreport/templates/report/view.html:76
 msgid "No results found."
+msgstr ""
+
+#: ckanext/gsreport/templates/snippets/facet_list.html:27
+msgid "Show More {facet_type}"
+msgstr ""
+
+#: ckanext/gsreport/templates/snippets/facet_list.html:30
+msgid "Show Only Popular {facet_type}"
+msgstr ""
+
+#: ckanext/gsreport/templates/snippets/facet_list.html:34
+msgid "There are no {facet_type} that match this search"
 msgstr ""
 
