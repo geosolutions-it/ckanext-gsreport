@@ -1,0 +1,28 @@
+{% ckan_extends %}
+
+{% block footer_links_ckan %}
+
+{{ super() }}
+ {% if c.userobj.sysadmin %}
+  <li>
+    <a href="{{ h.url_for('reports') }}" title="{{ _('Reports') }}">
+      <i class="icon-list"></i>
+        {{ _("Reports") }}
+    </a>
+  </li>
+ {% endif %}
+
+{% endblock %}
+
+{% block footer_links %}
+{{ super() }}
+ {% if c.userobj.sysadmin %}
+  <li>
+    <a href="{{ h.url_for('reports') }}" title="{{ _('Reports') }}">
+      <i class="icon-list"></i>
+        {{ _("Reports") }}
+    </a>
+  </li>
+ {% endif %}
+
+{% endblock %}

@@ -228,7 +228,11 @@ def check_http(res, res_url, return_headers=False):
         return out
     resp_code = resp.getcode()
     info = resp.info()
-    data = resp.read(1024)
+    try:
+        data = resp.read(1024)
+        data = data.decode('utf-8')
+    except UnicodeError:
+        data = u"can't encode data properly. possibly binary response from server"
     out.update({'code': resp_code,
                 'headers': headers_to_str(info.headers),
                 'data': data})

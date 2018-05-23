@@ -1,7 +1,6 @@
 import logging
 
 import ckan.plugins as plugins
-from ckan.lib.plugins import DefaultTranslation
 import ckan.plugins.toolkit as toolkit
 
 from ckanext.report.interfaces import IReport
@@ -10,6 +9,11 @@ from ckanext.gsreport.reports import all_reports, EMPTY_STRING_PLACEHOLDER
 log = logging.getLogger(__name__)
 
 
+try:
+    from ckan.lib.plugins import DefaultTranslation
+except ImportError:
+    class DefaultTranslation():
+        pass
 
 def check_if_super(context, data_dict=None):
     out = {'success': False,
@@ -28,11 +32,13 @@ def check_if_super(context, data_dict=None):
 
 class StatusReportPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(IReport)
-    plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IPackageController, inherit=True)
+    # ITranslation
+    if toolkit.check_ckan_version(min_version='2.5.0'):
+        plugins.implements(plugins.ITranslation)
 
     # ------------- IConfigurer ---------------#
 
