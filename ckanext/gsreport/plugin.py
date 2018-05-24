@@ -84,6 +84,8 @@ class StatusReportPlugin(plugins.SingletonPlugin, DefaultTranslation):
         from ckanext.gsreport import helpers as gsh
         return {'gsreport_facets_hide_item': gsh.facets_hide_item,
                 'gsreport_get_organizations': gsh.get_organizations,
+                'gsreport_get_org_title': gsh.get_localized_org_title,
+                'gsreport_get_pkg_title': gsh.get_localized_pkg_title,
                }
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-22 18:34+0200\n"
+"POT-Creation-Date: 2018-05-23 19:20+0200\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -42,6 +42,17 @@ msgstr ""
 
 #: ckanext/gsreport/reports.py:383
 msgid "List of licenses used"
+msgstr ""
+
+#: ckanext/gsreport/templates/footer.html:8
+#: ckanext/gsreport/templates/footer.html:10
+#: ckanext/gsreport/templates/footer.html:21
+#: ckanext/gsreport/templates/footer.html:23
+#: ckanext/gsreport/templates/report/index.html:3
+#: ckanext/gsreport/templates/report/index.html:6
+#: ckanext/gsreport/templates/report/view.html:3
+#: ckanext/gsreport/templates/report/view.html:30
+msgid "Reports"
 msgstr ""
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:3
@@ -116,13 +127,6 @@ msgstr ""
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:45
 msgid "Reason"
-msgstr ""
-
-#: ckanext/gsreport/templates/report/index.html:3
-#: ckanext/gsreport/templates/report/index.html:6
-#: ckanext/gsreport/templates/report/view.html:3
-#: ckanext/gsreport/templates/report/view.html:30
-msgid "Reports"
 msgstr ""
 
 #: ckanext/gsreport/templates/report/index.html:40
