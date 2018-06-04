@@ -120,7 +120,7 @@ def report_licenses(organization=None):
     def get_license(lid):
         l = license_reg.get(r[0])
         return l.title if l else lid
-
+    
     table = [{'title': get_license(r[0]), 'license': r[0], 'count': r[1]} for r in q]
     return {'table': table,
             'number_of_licenses': count}
