@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-23 19:20+0200\n"
+"POT-Creation-Date: 2018-06-05 16:59+0200\n"
 "PO-Revision-Date: 2018-02-12 13:25+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: de <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: ckanext/gsreport/checkers.py:137
+#: ckanext/gsreport/checkers.py:140 ckanext/gsreport/checkers.py:146
 msgid ""
 " ** Warning:** Resource's URL is invalid for OWS service, however it "
 "responds with correct HTTP response.\n"
@@ -32,6 +32,27 @@ msgstr ""
 "** Warnung: ** URL der Ressource ist ungültig für den OWS-Dienst, "
 "jedochantwortet mit korrekter HTTP-Antwort. \\ n\\ n** OWS-Fehler: ** {} "
 "\\ n\\ n** OWS-Daten: ** \\ n\\ n{}"
+
+#: ckanext/gsreport/checkers.py:192 ckanext/gsreport/checkers.py:246
+msgid "connection-error"
+msgstr ""
+
+#: ckanext/gsreport/checkers.py:200 ckanext/gsreport/checkers.py:210
+#: ckanext/gsreport/checkers.py:217
+msgid "response-error"
+msgstr ""
+
+#: ckanext/gsreport/checkers.py:226
+msgid "not-valid-ows"
+msgstr ""
+
+#: ckanext/gsreport/checkers.py:227
+msgid "Provided url doesn't work as OWS endpoint"
+msgstr ""
+
+#: ckanext/gsreport/checkers.py:260
+msgid "bad-response-code"
+msgstr ""
 
 #: ckanext/gsreport/reports.py:365
 msgid ""
@@ -50,9 +71,8 @@ msgid "List of licenses used"
 msgstr "Liste der verwendeten Lizenzen"
 
 #: ckanext/gsreport/templates/footer.html:8
-#: ckanext/gsreport/templates/footer.html:10
+#: ckanext/gsreport/templates/footer.html:19
 #: ckanext/gsreport/templates/footer.html:21
-#: ckanext/gsreport/templates/footer.html:23
 #: ckanext/gsreport/templates/report/index.html:3
 #: ckanext/gsreport/templates/report/index.html:6
 #: ckanext/gsreport/templates/report/view.html:3
@@ -107,30 +127,30 @@ msgstr "Resources with broken links"
 msgid "% Broken links"
 msgstr "% Kaputte Links"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:40
+#: ckanext/gsreport/templates/report/broken_links_report.html:42
 #: ckanext/gsreport/templates/report/resources_format_report.html:12
 msgid "Dataset"
 msgstr "Datensatz"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:41
+#: ckanext/gsreport/templates/report/broken_links_report.html:43
 msgid "Title"
 msgstr "Titel"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:42
+#: ckanext/gsreport/templates/report/broken_links_report.html:44
 #: ckanext/gsreport/templates/report/resources_format_report.html:15
-#: ckanext/gsreport/templates/report/resources_format_report.html:44
+#: ckanext/gsreport/templates/report/resources_format_report.html:47
 msgid "Format"
 msgstr "Format"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:43
+#: ckanext/gsreport/templates/report/broken_links_report.html:45
 msgid "URL"
 msgstr "URL"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:44
+#: ckanext/gsreport/templates/report/broken_links_report.html:46
 msgid "Status"
 msgstr "Status"
 
-#: ckanext/gsreport/templates/report/broken_links_report.html:45
+#: ckanext/gsreport/templates/report/broken_links_report.html:47
 msgid "Reason"
 msgstr "Grund"
 
@@ -151,20 +171,20 @@ msgid "code"
 msgstr "code"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:11
-#: ckanext/gsreport/templates/report/resources_format_report.html:45
+#: ckanext/gsreport/templates/report/resources_format_report.html:48
 msgid "Count"
 msgstr "Anzahl"
 
 #: ckanext/gsreport/templates/report/licenses_report.html:17
 #: ckanext/gsreport/templates/report/licenses_report.html:18
-#: ckanext/gsreport/templates/report/resources_format_report.html:52
+#: ckanext/gsreport/templates/report/resources_format_report.html:55
 msgid "not specified"
 msgstr "keine Angabe"
 
 #: ckanext/gsreport/templates/report/option_org.html:11
 #: ckanext/gsreport/templates/report/option_org.html:15
-#: ckanext/gsreport/templates/report/option_organization.html:13
-#: ckanext/gsreport/templates/report/option_organization.html:17
+#: ckanext/gsreport/templates/report/option_organization.html:12
+#: ckanext/gsreport/templates/report/option_organization.html:15
 msgid "Index of all organizations"
 msgstr "Index aller Organisationen"
 

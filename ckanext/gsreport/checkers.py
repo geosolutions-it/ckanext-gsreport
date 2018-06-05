@@ -57,7 +57,9 @@ def check_url(res):
         * checked_at - timestamp of check
         * headers - string with list of headers 
         * data - response data (first 1024 bytes)
-        * msg - error message (may be exception or richer description
+        * msg_raw - raw error message
+        * msg_rendered - message with context
+        * msg - error message (may be exception or richer description template)
         * error - error name
    
     Error names describes type of error:
@@ -134,11 +136,20 @@ def check_ows(res, res_url, format):
             for k in ('headers', 'code', 'data',):
                 if k in out_http:
                     out[k] = out_http[k]
+            out['msg_raw'] = out['msg']
             out['msg'] = t._(""" ** Warning:** Resource's URL is """
                           """invalid for OWS service, however it responds """
                           """with correct HTTP response.\n\n**OWS error:** """
-                          """ {}\n\n**OWS data:**\n\n {}""").format(out['error'],
-                                                                     out['msg'] or '')
+                          """ {}\n\n**OWS data:**\n\n {}""")
+                          # .format(out['error'], out['msg'] or '')
+            
+            out['msg_rendered'] = t._(""" ** Warning:** Resource's URL is """
+                                      """invalid for OWS service, however it responds """
+                                      """with correct HTTP response.\n\n**OWS error:** """
+                                      """ {}\n\n**OWS data:**\n\n {}""")\
+                                        .format(out['error'],
+                                                out['msg_raw'] or '')
+                          
             out['error'] = 'not-valid-ows-good-http'
             return out
 
@@ -154,6 +165,8 @@ def _check_ows(res, res_url, format):
            'headers': None,
            'error': None,
            'msg': None,
+           'msg_raw': None,
+           'msg_rendered': None,
            'data': None}
     if format in ('map_srvc'):
         format = 'wms'
@@ -176,15 +189,17 @@ def _check_ows(res, res_url, format):
             log.info("OWS service %s is not using %s params: %s", res_url, params, err)
             continue
         except urllib2.URLError, err:
-            out['error'] = 'connection-error'
+            out['error'] = t._('connection-error')
             out['msg'] = clean_for_markdown(str(err))
+            out['msg_rendered'] = out['msg']
             return out
         
         # fallback for general error
         except Exception, err:
             log.warning("OWS service %s causes client creation error: %s", res_url, err)
-            out['error'] = 'response-error'
+            out['error'] = t._('response-error')
             out['msg'] = clean_for_markdown(str(err))
+            out['msg_rendered'] = out['msg']
             return out
 
         try:
@@ -192,22 +207,26 @@ def _check_ows(res, res_url, format):
         except ServiceException, err:
             log.debug("OWS service %s is not using %s params", res_url, params)
 
-            out['error'] = 'response-error'
+            out['error'] = t._('response-error')
             out['msg'] = clean_for_markdown(str(err))
+            out['msg_rendered'] = out['msg']
             return out
         # fallback for general error
         except Exception, err:
             log.warning("OWS service %s causes client contents error: %s", res_url, err)
-            out['error'] = 'response-error'
+            out['error'] = t._('response-error')
             out['msg'] = clean_for_markdown(str(err))
+            out['msg_rendered'] = out['msg']
             return out
         break
     else:
         # we iterated thourgh all defaults, and none worked,
         # endpoint doesn't accept any of them, so maybe it's not
         # an OWS endpoint
-        out['error'] = 'not-valid-ows'
-        out['msg'] = "Provided url doesn't work as OWS endpoint"
+        out['error'] = t._('not-valid-ows')
+        out['msg'] = t._("Provided url doesn't work as OWS endpoint")
+        out['msg_rendered'] = out['msg']
+
         return out
     return out
 
@@ -224,7 +243,7 @@ def check_http(res, res_url, return_headers=False):
     except IOError, err:
         log.warning('Cannot connect to %s: %s', res_url, err)
         out['msg'] = clean_for_markdown(str(err))
-        out['error'] = 'connection-error'
+        out['error'] = t._('connection-error')
         return out
     resp_code = resp.getcode()
     info = resp.info()
@@ -238,7 +257,7 @@ def check_http(res, res_url, return_headers=False):
                 'data': data})
 
     if resp_code != 200:
-        out['error'] = 'bad-response-code'
+        out['error'] = t._('bad-response-code')
         log.warning('bad response from resource: %s: %s', resp_code, data)
         return out
     if return_headers:
