@@ -8,10 +8,19 @@ from sqlalchemy import func, and_, or_
 from sqlalchemy.sql.functions import coalesce
 from ckan import model
 import ckan.plugins.toolkit as t
-from ckanext.report import lib
 from ckan.common import OrderedDict
 from ckan.model.license import LicenseRegister
 from sqlalchemy import desc
+
+# # for future ckan versions
+# # flask-babel version used is requiring babel.support.NullTranslation (from 1.0 up)
+# # which is not present in version in requirements (0.9.6)
+try:
+    from babel.support import NullTranslation
+    from flask.ext.babel import lazy_gettext as _
+except ImportError:
+    from pylons.i18n import lazy_ugettext as _
+
 
 from ckanext.gsreport.checkers import check_url
 log = logging.getLogger(__name__)
@@ -362,7 +371,7 @@ def resources_formats(org=None, res_format=None):
 def all_reports():
     broken_link_info = {
         'name': 'broken-links',
-        'description': t._("List datasets with resources that are non-existent or return error response"),
+        'description': _(u"List datasets with resources that are non-existent or return error response"),
         'option_defaults': broken_links_options,
         'generate': report_broken_links,
         'option_combinations': broken_links_options_combinations,
@@ -371,7 +380,7 @@ def all_reports():
 
     resources_format_info = {
         'name': 'resources-format',
-        'description': t._("List formats used in resources"),
+        'description': _(u"List formats used in resources"),
         'option_defaults': resources_format_options,
         'generate': resources_formats,
         'option_combinations': resources_format_options_combinations,
@@ -380,13 +389,12 @@ def all_reports():
 
     licenses_info = {
         'name': 'licenses',
-        'description': t._("List of licenses used"),
+        'description': _(u"List of licenses used"),
         'option_defaults': org_options.copy(),
         'generate': report_licenses,
         'option_combinations': get_organizations,
         'template': 'report/licenses_report.html',
     }
-
     return [
         resources_format_info,
         broken_link_info,

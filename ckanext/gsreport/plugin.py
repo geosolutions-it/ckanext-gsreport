@@ -50,6 +50,7 @@ class StatusReportPlugin(plugins.SingletonPlugin, DefaultTranslation):
     # ------------- IReport ---------------#
 
     def register_reports(self):
+        print('registering')
         return all_reports()
 
     def before_index(self, dataset_dict):

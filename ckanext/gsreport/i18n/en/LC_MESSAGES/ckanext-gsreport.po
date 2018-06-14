@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-05 16:59+0200\n"
+"POT-Creation-Date: 2018-06-14 12:28+0200\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -51,23 +51,21 @@ msgstr ""
 msgid "bad-response-code"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:365
+#: ckanext/gsreport/reports.py:370
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:374
+#: ckanext/gsreport/reports.py:379
 msgid "List formats used in resources"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:383
+#: ckanext/gsreport/reports.py:388
 msgid "List of licenses used"
 msgstr ""
 
 #: ckanext/gsreport/templates/footer.html:8
-#: ckanext/gsreport/templates/footer.html:19
-#: ckanext/gsreport/templates/footer.html:21
 #: ckanext/gsreport/templates/report/index.html:3
 #: ckanext/gsreport/templates/report/index.html:6
 #: ckanext/gsreport/templates/report/view.html:3
