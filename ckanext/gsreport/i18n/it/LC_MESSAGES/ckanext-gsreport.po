@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 12:28+0200\n"
+"POT-Creation-Date: 2018-06-14 14:33+0200\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "bad-response-code"
 msgstr ""
 
-#: ckanext/gsreport/reports.py:370
+#: ckanext/gsreport/reports.py:374
 msgid ""
 "List datasets with resources that are non-existent or return error "
 "response"
@@ -68,11 +68,11 @@ msgstr ""
 "Elenca i set di dati con risorse inesistenti o restituisce il messaggio "
 "di errore"
 
-#: ckanext/gsreport/reports.py:379
+#: ckanext/gsreport/reports.py:383
 msgid "List formats used in resources"
 msgstr "Elenca i formati usati nelle risorse"
 
-#: ckanext/gsreport/reports.py:388
+#: ckanext/gsreport/reports.py:392
 msgid "List of licenses used"
 msgstr "Elenca le licenze usate"
 
@@ -112,13 +112,9 @@ msgid "All Datasets"
 msgstr "Tutti i set di dati"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:14
+#: ckanext/gsreport/templates/report/broken_links_report.html:15
 msgid "Datasets with broken links"
 msgstr "Set di dati con collegamenti interrotti"
-
-#: ckanext/gsreport/templates/report/broken_links_report.html:15
-#, fuzzy
-msgid "% Datasets with broken links"
-msgstr "%% Set di dati con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:17
 msgid "All resources"
@@ -129,9 +125,8 @@ msgid "Resources with broken links"
 msgstr "Risorse con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:19
-#, fuzzy
-msgid "% Broken links"
-msgstr "%% Link interrotti"
+msgid "Broken links"
+msgstr "Link interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:42
 #: ckanext/gsreport/templates/report/resources_format_report.html:12
