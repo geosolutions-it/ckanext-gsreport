@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 14:33+0200\n"
+"POT-Creation-Date: 2018-06-14 15:18+0200\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -82,7 +82,7 @@ msgstr "Elenca le licenze usate"
 #: ckanext/gsreport/templates/report/view.html:3
 #: ckanext/gsreport/templates/report/view.html:30
 msgid "Reports"
-msgstr "Repporti"
+msgstr "Rapporti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:3
 msgid "Number of datasets checked"
@@ -153,7 +153,7 @@ msgstr "Stato"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:47
 msgid "Reason"
-msgstr "Ragionare"
+msgstr "Causa"
 
 #: ckanext/gsreport/templates/report/index.html:40
 msgid "View Report"
@@ -191,7 +191,7 @@ msgstr "Indice di tutte le organizzazioni"
 
 #: ckanext/gsreport/templates/report/option_res_format.html:2
 msgid "Resource format"
-msgstr "Formato di risorsa"
+msgstr "Formato della risorsa"
 
 #: ckanext/gsreport/templates/report/resources_format_report.html:3
 msgid "Number of formats used"
