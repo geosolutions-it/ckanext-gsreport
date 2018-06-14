@@ -118,8 +118,8 @@ msgid "Datasets with broken links"
 msgstr "Set di dati con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:15
-msgid "% Datasets with broken links"
-msgstr "% Set di dati con collegamenti interrotti"
+msgid "%% Datasets with broken links"
+msgstr "%% Set di dati con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:17
 msgid "All resources"
@@ -130,8 +130,8 @@ msgid "Resources with broken links"
 msgstr "Risorse con collegamenti interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:19
-msgid "% Broken links"
-msgstr "% Link interrotti"
+msgid "%% Broken links"
+msgstr "%% Link interrotti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:42
 #: ckanext/gsreport/templates/report/resources_format_report.html:12

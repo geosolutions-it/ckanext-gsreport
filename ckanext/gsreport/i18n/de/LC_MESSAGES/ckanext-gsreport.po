@@ -112,8 +112,8 @@ msgid "Datasets with broken links"
 msgstr "Datensätze mit defekten Links"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:15
-msgid "% Datasets with broken links"
-msgstr "% Datensätze mit defekten Links"
+msgid "%% Datasets with broken links"
+msgstr "%% Datensätze mit defekten Links"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:17
 msgid "All resources"
@@ -124,8 +124,8 @@ msgid "Resources with broken links"
 msgstr "Resources with broken links"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:19
-msgid "% Broken links"
-msgstr "% Kaputte Links"
+msgid "%% Broken links"
+msgstr "%% Kaputte Links"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:42
 #: ckanext/gsreport/templates/report/resources_format_report.html:12
