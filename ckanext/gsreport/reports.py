@@ -9,6 +9,7 @@ from sqlalchemy.sql.functions import coalesce
 from ckan import model
 import ckan.plugins.toolkit as t
 from ckan.common import OrderedDict
+from ckan.lib.base import config
 from ckan.model.license import LicenseRegister
 from sqlalchemy import desc
 
@@ -37,6 +38,10 @@ DEFAULT_ORG_CTX.update(dict((k, False) for k in ('include_tags',
 license_reg = LicenseRegister()
 
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
+DEFAULT_FORMAT_LIST_LIMIT = 100
+FORMAT_LIST_CONFIG = "ckanext.gsreport.resource_format.format_limit"
+FORMAT_LIST_LIMIT = t.asint(config.get(FORMAT_LIST_CONFIG, 
+                                       DEFAULT_FORMAT_LIST_LIMIT))
 
 def dformat(val):
     """
@@ -325,7 +330,8 @@ def resources_formats(org=None, res_format=None):
 
         res_count = q.count()
         format_count = format_q.count()
-
+        if not org:
+            q = q.limit(FORMAT_LIST_LIMIT)
         table = [row_dict_norm(
                  {'organization': {'name': r[0]},
                   'dataset': {'title': r[1],
