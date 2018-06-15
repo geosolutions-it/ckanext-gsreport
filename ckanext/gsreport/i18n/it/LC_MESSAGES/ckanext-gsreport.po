@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-gsreport 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 15:18+0200\n"
+"POT-Creation-Date: 2018-06-15 16:34+0200\n"
 "PO-Revision-Date: 2018-02-05 17:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr "Rapporti"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:3
 msgid "Number of datasets checked"
-msgstr "Numero di set di dati non riusciti"
+msgstr "Numero di set di dati controllati"
 
 #: ckanext/gsreport/templates/report/broken_links_report.html:4
 msgid "Number of datasets failed"
