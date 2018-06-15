@@ -13,7 +13,7 @@ default - Default value for this option
 
     <select id="option-org" name="org" class="inline js-auto-submit" data-module="autosubmit">
         <option value="{{ url_root }}" {% if value == None %}selected="selected"{% endif %}>-- {{ _('Index of all organizations') }} --</option>
-        {% for org_name, org_title in h.report__organization_list() %}
+        {% for org_name, org_title in h.gsreport_get_organizations() %}
             {% set new_params=dict(org=org_name) %}
             {% set x=extras.update(request.GET) %}
             {% set x=extras.update(new_params) %}

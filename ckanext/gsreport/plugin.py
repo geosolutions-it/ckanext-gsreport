@@ -9,6 +9,11 @@ from ckanext.gsreport.reports import all_reports, EMPTY_STRING_PLACEHOLDER
 log = logging.getLogger(__name__)
 
 
+try:
+    from ckan.lib.plugins import DefaultTranslation
+except ImportError:
+    class DefaultTranslation():
+        pass
 
 def check_if_super(context, data_dict=None):
     out = {'success': False,
@@ -25,12 +30,15 @@ def check_if_super(context, data_dict=None):
 
 
 
-class StatusReportPlugin(plugins.SingletonPlugin):
+class StatusReportPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(IReport)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IPackageController, inherit=True)
+    # ITranslation
+    if toolkit.check_ckan_version(min_version='2.5.0'):
+        plugins.implements(plugins.ITranslation)
 
     # ------------- IConfigurer ---------------#
 
@@ -42,6 +50,7 @@ class StatusReportPlugin(plugins.SingletonPlugin):
     # ------------- IReport ---------------#
 
     def register_reports(self):
+        print('registering')
         return all_reports()
 
     def before_index(self, dataset_dict):
@@ -74,4 +83,17 @@ class StatusReportPlugin(plugins.SingletonPlugin):
 
     def get_helpers(self):
         from ckanext.gsreport import helpers as gsh
-        return {'gsreport_facets_hide_item': gsh.gsreport_facets_hide_item}
+        return {'gsreport_facets_hide_item': gsh.facets_hide_item,
+                'gsreport_get_organizations': gsh.get_organizations,
+                'gsreport_get_org_title': gsh.get_localized_org_title,
+                'gsreport_get_pkg_title': gsh.get_localized_pkg_title,
+               }
+
+
+    # ------------- ITranslation --------------------- #
+    def i18n_domain(self):
+        '''Change the gettext domain handled by this plugin
+        This implementation assumes the gettext domain is
+        ckanext-{extension name}, hence your pot, po and mo files should be
+        named ckanext-{extension name}.mo'''
+        return 'ckanext-{name}'.format(name='gsreport')

@@ -21,6 +21,7 @@ This extension requires `ckanext-report` and `owslib` to be installed before usi
 
 > $ git clone https://github.com/geosolutions-it/ckanext-gsreport.git
  $ cd ckanext-gsreport
+ $ pip install -r requirements.txt
  $ pip install -e .
 
 3. Add `status_reports` to plugins. **Note** Order of entries matters. This plugin should be placed **before** `report` plugin.

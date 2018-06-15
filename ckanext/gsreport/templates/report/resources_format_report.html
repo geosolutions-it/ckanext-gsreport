@@ -19,8 +19,11 @@
     <tbody>
         {% for row in table %}
             <tr>
-                <td>{{ row['organization.name'] }}</td>
-                <td><a href="{{ h.url_for('dataset_read', id=row['dataset.id']) }}">{{ row['dataset.title'] }}
+                {% set org_title = h.gsreport_get_org_title(row['organization.name'], h.lang()) %}
+                {% set dataset_title =  h.gsreport_get_pkg_title(row['dataset.id'], h.lang()) %}
+
+                <td>{{ org_title or row['organization.name'] }}</td>
+                <td><a href="{{ h.url_for('dataset_read', id=row['dataset.id']) }}">{{ dataset_title or row['dataset.title'] }}
                 {% if row['dataset.private'] %}
                     <span class="icon-lock" title="private"></span>
                 {% endif %}

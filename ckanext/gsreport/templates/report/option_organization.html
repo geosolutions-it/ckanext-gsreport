@@ -9,14 +9,12 @@ default - Default value for this option
     <label for="option-organization"> {{ _('Organization') }} </label>
     {% set offer_organization_index = (default == None) %}
     {% set url_root = h.report__relative_url_for(organization=None) %}
-    {% if offer_organization_index and value != None %}
-        <a href="{{ url_root }}">{% trans %}Index of all organizations{% endtrans %}</a>
-    {% endif %}
+    <a href="{{ url_root }}">{% trans %}Index of all organizations{% endtrans %}</a>
     <select id="option-organization" name="organization" class="inline js-auto-submit" data-module="autosubmit">
         {% if offer_organization_index %}
           <option value="{{ url_root }}" {% if value == None %}selected="selected"{% endif %}>-- {{ _('Index of all organizations') }} --</option>
         {% endif %}
-        {% for org_name, org_title in h.report__organization_list() %}
+        {% for org_name, org_title in h.gsreport_get_organizations() %}
             <option value="{{ url_root }}/{{ org_name }}" {% if value == org_name %}selected="selected" {% endif %}> {{org_title}} </option>
         {% endfor %}
     </select>
