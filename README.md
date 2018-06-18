@@ -63,6 +63,13 @@ Also, see `ckanext-report` documentation: https://github.com/datagovuk/ckanext-r
 
 Report, once generated, is stored in database. When new report is generated, it will replace existing data after regeneration. If report, for some reason, will fail during generation, report data from previous runs will be still available.
 
+## Configuration
+
+Reports module has following configuration options:
+
+ * `ckanext.gsreport.resource_format.format_limit` - this option controls how many resources are shown in per-format view of `resources-format` report (default: 100). This should speed-up rendering of this report page, because in most popular formats, there can be tens of thousands of resources with that format. However, if you select specific organization, you should see all resources for that organization and selected format.
+
+
 ## Available Reports
 
  * `resources-format` - list of formats used in active resources
